@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Anurati";
+    src: url("./styles/fonts/Anurati-Regular.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("./styles/fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+
+#root{
+    color : white;
+    font-family: "Roboto";
+}
+
+.header-spacing {
+    letter-spacing: 2px;
+}
+
+.anurati-font{
+    font-family: "Anurati";
+    font-size: 60px;
+    font-weight: 600;
+}
