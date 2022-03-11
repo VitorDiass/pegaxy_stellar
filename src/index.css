@@ -16,14 +16,30 @@
 #root{
     color : white;
     font-family: "Roboto";
+
+    --color-white : white;
+    --color-success : #5887A5;
+    --color-danger : #A43352;
+    --colo-light-blue : #24B7DD;
+
 }
 
-.header-spacing {
+.header {
     letter-spacing: 2px;
+   
 }
 
-.anurati-font{
+.text-glow-white {
+    text-shadow: white 0 0 10px;
+}
+
+.main-title{
     font-family: "Anurati";
     font-size: 60px;
     font-weight: 600;
+}
+
+.main-divider {
+   
+    box-shadow: 0px 5px 4px 3px rgba(0, 0, 0, 0.1);
 }
