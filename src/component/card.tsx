@@ -24,7 +24,7 @@ const StyledCard = styled(Card)`
   
   &:hover {
     //box-shadow : 0px 0px 5px 5px ${({linearBgTop}) => linearBgTop} !important;
-    text-shadow : ${({linearBgTop}) => linearBgTop} 0px 0px 10px;
+    //text-shadow : ${({linearBgTop}) => linearBgTop} 0px 0px 10px;
   }
 `;
 
@@ -32,7 +32,7 @@ const CardComponent = ({ cardColor, linearBgTop, linearBgBottom, cardTitle, icon
   return (
     <>
       <StyledCard className="!w-96" cardColor={cardColor} linearBgTop={linearBgTop} linearBgBottom={linearBgBottom}>
-        <div className="flex items-center justify-center h-32 text-2xl tracking-wider">
+        <div className="flex items-center justify-center h-32 2xl:h-40 text-2xl tracking-wider">
             {children}
             {/* <div className="text-2xl my-10">{icon}</div> */}
          {cardTitle}

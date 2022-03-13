@@ -47,8 +47,6 @@
 
 .main-title{
     font-family: "Anurati";
-    font-size: 60px;
-    font-weight: 600;
 }
 
 .main-divider {
@@ -58,4 +56,16 @@
 
 .ui.card{
     margin : 0px !important;
+}
+
+@media only screen and (min-width: 1024px) {
+    .card-width {
+        min-width: 300px;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .card-width {
+        min-width: 500px;
+    }
 }
