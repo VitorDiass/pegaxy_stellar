@@ -4,15 +4,26 @@ import { MdDashboard } from "react-icons/md";
 import {IoPersonSharp} from 'react-icons/io5'
 import { GiPegasus } from "react-icons/gi";
 import { GoTools } from "react-icons/go";
+import { useNavigate } from 'react-router-dom'
+import {healthService} from '../services/endpoints/health';
+import { useEffect } from 'react';
+import {useStatus} from '../hooks/useStatus';
 
 const MainMenu = () => {
+  const navigate = useNavigate();
+
+useStatus();
+
   return (
     <>
-      <div className="flex flex-grow items-center justify-center mt-16 md:mt-20">
+    
+      <div className="flex flex-grow items-center justify-center mt-16 md:mt-15">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-10 lg:gap-x-36 lg:gap-y-24">
-          <CardComponent cardTitle='GENERAL' cardColor='var(--color-light-blue)' linearBgTop='var(--color-light-blue-025)' linearBgBottom='var(--color-light-blue-001)'>
-            <MdDashboard className='text-4xl'/>
-          </CardComponent>
+          <span className='cursor-pointer' onClick={() => navigate('/general')}>
+            <CardComponent cardTitle='GENERAL' cardColor='var(--color-light-blue)' linearBgTop='var(--color-light-blue-025)' linearBgBottom='var(--color-light-blue-001)'>
+              <MdDashboard className='text-4xl'/>
+            </CardComponent>
+          </span>
           <CardComponent cardTitle='USER' cardColor='var(--color-orange)' linearBgTop='var(--color-orange-025)' linearBgBottom='var(--color-orange-001)'>
             <IoPersonSharp className='text-4xl'/>
           </CardComponent>

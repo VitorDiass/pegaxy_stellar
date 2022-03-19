@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { Component } from "react";
 import { Card, CardProps, Icon, Image } from "semantic-ui-react";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ interface CardComponent {
   linearBgBottom : string;
   cardTitle : string;
   icon? : any;
+  to? : string;
   //className : string;
 }
 
@@ -28,7 +29,7 @@ const StyledCard = styled(Card)`
   }
 `;
 
-const CardComponent = ({ cardColor, linearBgTop, linearBgBottom, cardTitle, icon, children }: CardComponent & CardProps) => {
+const CardComponent = ({ cardColor, linearBgTop, linearBgBottom, cardTitle, icon, to, children }: CardComponent & CardProps) => {
   return (
     <>
       <StyledCard className="!w-96" cardColor={cardColor} linearBgTop={linearBgTop} linearBgBottom={linearBgBottom}>
