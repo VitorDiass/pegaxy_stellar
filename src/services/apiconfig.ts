@@ -10,5 +10,12 @@ export const HEALTH_ENDPOINT = {
 
 export const ASSETS_ENDPOINT = {
     "ASSETS" : '/assets',
-    "COUNT" : '/count'
-} 
+    "COUNT" : '/count',
+    "HISTORICAL" : '/historical'
+}
+
+export const STATS_ENDPOINT = {
+    "STATS" : '/stats',
+    "RENTAL" : '/rental',
+    "DISTRIBUTION" : '/distribution'
+}

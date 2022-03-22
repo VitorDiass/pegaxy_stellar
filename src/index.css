@@ -25,6 +25,7 @@
     /*INFO CARDS COLORS*/
     --color-card-bg : rgba(6, 8, 14, 0.5);
     --color-text-secundary : #B1B1B1;
+    --color-text-subsecundary : #8f8f8f;
 
     /*MAIN MENU CARD COLORS*/
     --color-light-blue : #24b7dd;
@@ -50,6 +51,11 @@
 .color-text-secundary {
     color : var(--color-text-secundary);
 }
+
+.color-text-subsecundary {
+    color : var(--color-text-subsecundary);
+}
+
 
 .header {
     letter-spacing: 2px;

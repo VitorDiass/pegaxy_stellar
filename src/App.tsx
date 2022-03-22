@@ -17,7 +17,7 @@ const App = () => {
       </Routes> */}
       
       <LayoutComponent>
-        <StatusBarComponent />
+        <StatusBarComponent/>
         <MainHeaderComponent />
         <DividerComponent />
         <MainMenu />
