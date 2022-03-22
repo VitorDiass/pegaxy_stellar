@@ -19,8 +19,8 @@ useStatus();
     
       <div className="flex flex-grow items-center justify-center mt-16 md:mt-15">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-10 lg:gap-x-36 lg:gap-y-24">
-          <span className='cursor-pointer' onClick={() => navigate('/general')}>
-            <CardComponent cardTitle='GENERAL' cardColor='var(--color-light-blue)' linearBgTop='var(--color-light-blue-025)' linearBgBottom='var(--color-light-blue-001)'>
+          <span className='cursor-pointer' onClick={() => navigate('/overview')}>
+            <CardComponent cardTitle='OVERVIEW' cardColor='var(--color-light-blue)' linearBgTop='var(--color-light-blue-025)' linearBgBottom='var(--color-light-blue-001)'>
               <MdDashboard className='text-4xl'/>
             </CardComponent>
           </span>

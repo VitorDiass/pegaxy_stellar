@@ -18,8 +18,15 @@
     font-family: "Roboto";
 
     --color-white : white;
+    --color-text-muted : #B1B1B1;
     --color-success : #5887A5;
     --color-danger : #A43352;
+
+    /*INFO CARDS COLORS*/
+    --color-card-bg : rgba(6, 8, 14, 0.5);
+    --color-text-secundary : #B1B1B1;
+
+    /*MAIN MENU CARD COLORS*/
     --color-light-blue : #24b7dd;
     --color-light-blue-025 : rgba(36,183,221, 0.25);
     --color-light-blue-001 : #2A2D33;
@@ -33,9 +40,15 @@
     --color-green : #24DD84;
     --color-green-025 : rgba(36, 221, 132, 0.25);
     --color-green-001 : #2A2D33;
+
+    /*API STATUS COLORS*/
     --color-blue-api : #5887A5;
     --color-red-api : #A43352;
 
+}
+
+.color-text-secundary {
+    color : var(--color-text-secundary);
 }
 
 .header {
@@ -45,6 +58,10 @@
 
 .text-glow-white {
     text-shadow: white 0 0 6px;
+}
+
+.text-glow-blue {
+    text-shadow: #24b7dd 0 0 6px;   
 }
 
 .main-title{

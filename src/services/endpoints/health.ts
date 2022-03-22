@@ -1,7 +1,7 @@
 import {axiosInstance} from "../api";
-import {apiconfig} from '../apiconfig';
+import {HEALTH_ENDPOINT} from '../apiconfig';
 
 export const healthService = async () => {
-    return await axiosInstance.get(apiconfig.HEALTH);
+    return; await axiosInstance.get(HEALTH_ENDPOINT.HEALTH);
 }
 

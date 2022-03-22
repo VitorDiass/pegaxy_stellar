@@ -2,7 +2,6 @@ import React, { MouseEvent, useState } from "react";
 import { Component } from "react";
 import { Card, CardProps, Icon, Image } from "semantic-ui-react";
 import styled from "styled-components";
-import "../styles/card.css";
 
 interface CardComponent {
   cardColor : string;

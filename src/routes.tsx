@@ -2,13 +2,13 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 
 import App from './App';
-import GeneralComponent from './pages/general';
+import OverviewComponent from './pages/overview';
 
 function RoutesComponent() {
   return (
    <Routes>
        <Route path="/" element={<App/>}/>
-       <Route path="/general" element={<GeneralComponent/>}/>
+       <Route path="/overview" element={<OverviewComponent/>}/>
    </Routes>
   )
 }

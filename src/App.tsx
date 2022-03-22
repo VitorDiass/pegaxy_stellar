@@ -2,9 +2,6 @@ import React from "react";
 import MainMenu from "./component/mainMenu";
 import { Button, Divider, Input, Segment } from "semantic-ui-react";
 import Footer from "./component/footer";
-import RoutesComponent from "./routes";
-
-import GeneralComponent from "./pages/general";
 import StatusBarComponent from "./component/statusbar";
 import MainHeaderComponent from "./component/mainHeader";
 import LayoutComponent from "./component/layout";
