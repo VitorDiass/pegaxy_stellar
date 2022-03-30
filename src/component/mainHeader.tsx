@@ -7,9 +7,9 @@ function MainHeaderComponent() {
       <span className="text-center text-white main-title text-glow-white">
         PEXAGY STELLAR
       </span>
-      <div className="text-center text-lg mt-8" style={{color : "var(--color-text-muted)"}}>
+     {/*  <div className="text-center text-lg mt-8" style={{color : "var(--color-text-muted)"}}>
         A multi purpose fansite made for players and managers of Pegaxy
-      </div>
+      </div> */}
     </div>
   </div>
   )

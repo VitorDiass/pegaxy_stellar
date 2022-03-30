@@ -6,8 +6,23 @@ import StatusBarComponent from "./component/statusbar";
 import MainHeaderComponent from "./component/mainHeader";
 import LayoutComponent from "./component/layout";
 import DividerComponent from "./component/divider";
+import SearchComponent from "./component/search";
+import { userOwnedPegaInfo } from "./services/endpoints/pegas";
 
 const App = () => {
+
+  const handleSearch = async (input : string)  => {
+    if(input){
+      
+      try {
+        const response = await userOwnedPegaInfo(input);
+        console.log(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
   return (
     <>
       {/*  <RoutesComponent/> */}
@@ -19,9 +34,10 @@ const App = () => {
       <LayoutComponent>
         <StatusBarComponent/>
         <MainHeaderComponent />
-        <DividerComponent />
-        <MainMenu />
-        <Footer />
+        <SearchComponent handleSearchInput={handleSearch}/>
+        {/* <DividerComponent /> */}
+        {/* <MainMenu /> */}
+       {/*  <Footer /> */}
       </LayoutComponent>
     </>
   );

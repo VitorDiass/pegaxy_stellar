@@ -19,3 +19,15 @@ export const STATS_ENDPOINT = {
     "RENTAL" : '/rental',
     "DISTRIBUTION" : '/distribution'
 }
+
+export const EARNINGS_ENDPOINT = {
+    "EARNINGS" : '/earnings',
+    "HISTORICAL" : '/historical',
+    "USER" : '/user'
+}
+
+export const PEGAS_ENDPOINT = {
+    "PEGAS" : "/pegas",
+    "OWNER" : "/owner",
+    "USER"  : "/user"
+}

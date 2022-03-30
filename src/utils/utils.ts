@@ -1,8 +1,10 @@
 export const numberFormat = (numberToFormat: number | string) => {
   let formatedString = "";
   let j = 0;
+  //console.log(numberToFormat)
 
-  if (typeof numberToFormat === "number") {
+  if (typeof numberToFormat === "number" && !Number.isNaN(numberToFormat)) {
+    console.log(numberToFormat)
     let tempString = numberToFormat.toString();
     for (let i = tempString.length - 1; i >= 0; i--) {
       formatedString = tempString.charAt(i) + formatedString;
@@ -13,7 +15,10 @@ export const numberFormat = (numberToFormat: number | string) => {
       }
     }
   } else {
-    formatedString = numberToFormat;
+   if(typeof numberToFormat === 'string'){
+     console.log(numberToFormat)
+     formatedString = numberToFormat
+   }
   }
   return formatedString;
 };
@@ -28,4 +33,8 @@ export const getCurrentTimestamp = () => {
     const day   = now.getDate() */
     return Math.round(now.getTime() / 1000);
   //}
+}
+
+export const checkIfSomeLoading = (arrayOfLoading : Array<boolean>) => {
+  return arrayOfLoading.some(x => x===true) 
 }

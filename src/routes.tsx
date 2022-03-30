@@ -8,7 +8,7 @@ function RoutesComponent() {
   return (
    <Routes>
        <Route path="/" element={<App/>}/>
-       <Route path="/overview" element={<OverviewComponent/>}/>
+       {/* <Route path="/overview" element={<OverviewComponent/>}/> */}
    </Routes>
   )
 }
