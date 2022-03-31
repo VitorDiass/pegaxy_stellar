@@ -11,7 +11,7 @@ import RoutesComponent from "./routes";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <RoutesComponent/>
+     {/*  <RoutesComponent/> */}
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

@@ -17,8 +17,6 @@ const StyledTableHeader = styled(Table.HeaderCell)`
     letter-spacing: 2px;
     color: white !important;
     text-align: center !important;
-    
-    
 `;
 
 interface TableProps {
