@@ -8,6 +8,7 @@ import TableComponent from "../component/table/table";
 import { userPegaAndVisService } from "../services/endpoints/assets";
 import { userOwnedPegaInfo } from "../services/endpoints/pegas";
 import {FaCopy} from 'react-icons/fa';
+import { numberFormat } from "../utils/utils";
 
 const WalletInfoComponent = ({ walletAddressProp }: any) => {
     const [searchParams] = useSearchParams();
@@ -77,7 +78,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                             <div className="flex flex-col justify-center items-center gap-x-2">
                                 <div className="color-text-secundary text-base">LOCKED</div>
                                 <div className="flex gap-x-2 text-lg items-center">
-                                    {userLockedVis} <img src="/images/vis.png" width="15"></img>
+                                    {numberFormat(Math.round(userLockedVis))} <img src="/images/vis.png" width="15"></img>
                                 </div>
                             </div>
                         </CardInfoComponent>

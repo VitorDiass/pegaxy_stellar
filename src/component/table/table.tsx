@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Popup, Progress, Table } from "semantic-ui-react";
 import styled from "styled-components";
-import { checkIfHorseIsRaceable, EnergyValueToColor, getCurrentTimestamp, getCurrentTimestampMidnight } from "../../utils/utils";
+import { checkIfHorseIsBreadable, checkIfHorseIsRaceable, EnergyValueToColor, getCurrentTimestamp, getCurrentTimestampMidnight } from "../../utils/utils";
 import { BsLightningFill } from "react-icons/bs";
 import { AiOutlineCheck, AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
@@ -38,6 +38,7 @@ const TableComponent = ({ data, title }: TableProps) => {
         "Gender",
         "Winrate | Races",
         "Raceable",
+        "Breadable",
         "Rented",
         "Breed",
         <Popup content="Speed" trigger={<div>🏇</div>} />,
@@ -73,7 +74,6 @@ const TableComponent = ({ data, title }: TableProps) => {
     };
 
     useEffect(() => {
-        console.log("data", data);
         setTableData(data);
     }, [data]);
 
@@ -93,11 +93,13 @@ const TableComponent = ({ data, title }: TableProps) => {
                         {tableData.map((row: any, index: number) => {
                             const currentTimeStamp = getCurrentTimestamp();
                             const isHorseRaceable = checkIfHorseIsRaceable(row['canRaceAt'], currentTimeStamp);
-                            const energy = row["energy"];
-                            let raceable;
+                            const isHorseBreadable = checkIfHorseIsBreadable(row['lastBreedTime'],currentTimeStamp, row['bornTime'],row['bloodLine']);
+                            let raceable = <></>;
+                            let breadable = <></>;
                             let energyColor = EnergyValueToColor(row['energy']);
 
                             isHorseRaceable ? (raceable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (raceable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
+                            isHorseBreadable ? (breadable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (breadable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
                             //currentTimeStamp > row["canRaceAt"] 
 
                             return (
@@ -113,6 +115,7 @@ const TableComponent = ({ data, title }: TableProps) => {
                                     <Table.Cell textAlign="center">{row["gender"]?.charAt(0)}</Table.Cell>
                                     <Table.Cell textAlign="center"><span className="flex justify-center items-center gap-x-1">{Math.round(row["winRate"] * 100)}% <span>| {row['totalRaces']}</span></span></Table.Cell>
                                     <Table.Cell textAlign="center">{raceable}</Table.Cell>
+                                    <Table.Cell textAlign="center">{breadable}</Table.Cell>
                                     <Table.Cell textAlign="center">{row['renterAddress'] ? <AiOutlineCheck className="text-green-500 text-2xl mx-auto" /> : <AiOutlineClose className="text-red-500 text-2xl mx-auto"/>}</Table.Cell>
                                     <Table.Cell textAlign="center">{row["breedCount"]}</Table.Cell>
                                     {/* <Table.Cell textAlign="center"><Popup content={<BsLightningFill/>} trigger={<span>{power}</span>}/></Table.Cell> */}
@@ -126,7 +129,6 @@ const TableComponent = ({ data, title }: TableProps) => {
                                     <Table.Cell textAlign="center">{row["silver"]}</Table.Cell>
                                     <Table.Cell textAlign="center">{row["bronze"]}</Table.Cell>
                                     <Table.Cell textAlign="center" className={energyColor}>
-                                        {" "}
                                         <div className="flex justify-center items-center">
                                             {row["energy"]}
                                             <BsLightningFill />
@@ -161,6 +163,13 @@ const TableComponent = ({ data, title }: TableProps) => {
                         <Table.Cell>POWER OUTPUT</Table.Cell>
                     </Table.Row> */}
                     </Table.Body>
+                   {/*  <Table.Header>
+                        <Table.Row>
+                            {tableHeaders.map((header: string) => {
+                                return <StyledTableHeader>{header}</StyledTableHeader>;
+                            })}
+                        </Table.Row>
+                    </Table.Header> */}
                 </StyledTable>
             </div>
         </>
