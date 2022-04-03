@@ -26,7 +26,7 @@ const StatusBarComponent = ({ gobackprop }: StatusBar) => {
                 </span>
                 <span className="flex items-center justify-end">
                     API STATUS
-                    {!status ? <AiOutlineCheckCircle className="text-2xl m-1" style={{ color: "lightgreen" }} /> : <AiOutlineCloseCircle className="text-2xl m-1" style={{ color: "red" }} />}
+                    {status ? <AiOutlineCheckCircle className="text-2xl m-1" style={{ color: "lightgreen" }} /> : <AiOutlineCloseCircle className="text-2xl m-1" style={{ color: "red" }} />}
                 </span>
             </div>
         </>

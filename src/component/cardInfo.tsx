@@ -8,7 +8,7 @@ const StyledCard = styled(Card)`
     //border: 1px solid rgba(6, 8, 14, 0.2) !important;
     //box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25) !important;
     box-shadow: none !important;
-    //min-height : 111px !important;
+    min-height : 85px !important;
     width : 100% !important;
     border : none !important;
     border-radius : 8px !important;

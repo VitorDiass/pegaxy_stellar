@@ -8,7 +8,7 @@ import { totalPegaCountService, bornPegaTodayService } from "../services/endpoin
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { rentalDistribution } from "../services/endpoints/stats";
 import { economicDataUsersByTime } from "../services/endpoints/earnings";
-import { numberFormat, getCurrentTimestamp, checkIfSomeLoading } from "../utils/utils";
+import { numberFormat, getCurrentTimestampMidnight, checkIfSomeLoading } from "../utils/utils";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import BarChartComponent from "../component/charts/bar";
 
@@ -87,8 +87,8 @@ const OverviewComponent = () => {
      }) */
 
         const fetchRentalDistribution = async () => {
-            const currentTimestamp = getCurrentTimestamp();
-            const response = await rentalDistribution(currentTimestamp);
+            const currentTimestampMidnight = getCurrentTimestampMidnight();
+            const response = await rentalDistribution(currentTimestampMidnight);
             if (response) {
                 const [labels, dataset] = [response.data.map((x: any) => x["distribution"]), response.data.map((x: any) => x["count"])];
 
@@ -111,8 +111,8 @@ const OverviewComponent = () => {
         fetchRentalDistribution();
 
         const economicDataUsers = async () => {
-            const currentTimestamp = getCurrentTimestamp();
-            const response = await economicDataUsersByTime(currentTimestamp);
+            const currentTimestampMidnight = getCurrentTimestampMidnight();
+            const response = await economicDataUsersByTime(currentTimestampMidnight);
             if (response) {
                 //console.log(economicData.totalPegaBuyCount)
                 setEconomicData(response.data[0]);

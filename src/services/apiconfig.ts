@@ -3,15 +3,21 @@ export const apiconfig = {
     "VERSION" : "/v1",
 }
 
+export const PEGAXY_GAME_ENDPOINTS = {
+    "PEGAXY" : 'play.pegaxy.io',
+    "MYASSETS" : 'my-assets',
+    "PEGA" : 'pega'
+}
+
 export const HEALTH_ENDPOINT = {
     "HEALTH" : '/health'
 } 
 
-
 export const ASSETS_ENDPOINT = {
     "ASSETS" : '/assets',
     "COUNT" : '/count',
-    "HISTORICAL" : '/historical'
+    "HISTORICAL" : '/historical',
+    "USER" : '/user'
 }
 
 export const STATS_ENDPOINT = {

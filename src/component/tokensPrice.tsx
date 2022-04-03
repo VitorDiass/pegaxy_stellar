@@ -25,20 +25,24 @@ const TokensPriceComponent = () => {
                 }
             }
         };
-
         getVisPrice();
         getPgxPrice();
+        
+        setInterval(() => {
+            getVisPrice();
+            getPgxPrice();
+        },300000)
     }, []);
 
     return (
         <div className="w-52">
             <div className="flex justify-between items-center">
                 <div className="flex">
-                    <img src="/src/styles/assets/vis.png" width={20}></img>
+                    <img src="/images/vis.png" width={20}></img>
                     &nbsp;<span>${visprice}</span> <span className="text-xs">&nbsp;</span>
                 </div>
                 <div className="flex">
-                    <img src="/src/styles/assets/pgx.png" width={20}></img>
+                    <img src="/images/pgx.png" width={20}></img>
                     &nbsp;<span>${pgxprice}</span> <span className="text-xs">&nbsp;</span>
                 </div>
             </div>

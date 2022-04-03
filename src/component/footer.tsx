@@ -5,7 +5,7 @@ function Footer() {
   return (
    
     <div className="text-center py-2 rounded mt-10">
-      Made with ❤️ by <a href='https://github.com/VitorDiass' target="_blank">Vitor Dias</a> | support : pegaxystellar@gmail.com
+      Made with ❤️ by <a href='https://github.com/VitorDiass' target="_blank">Vitor Dias</a> | contact : pegaxystellar@gmail.com
     </div>
     
   )
