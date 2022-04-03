@@ -92,11 +92,6 @@
 .ui.card{
     margin : 0px !important;
 }
-/* 
-.loader-center .ui.loader{
-    position: unset !important;
-    display: unset !important;
-} */
 
 @media only screen and (min-width: 1024px) {
     .card-width {

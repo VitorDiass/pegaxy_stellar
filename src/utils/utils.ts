@@ -12,7 +12,7 @@ export const numberFormat = (numberToFormat: number | string) => {
     //console.log(numberToFormat)
 
     if (typeof numberToFormat === "number" && !Number.isNaN(numberToFormat)) {
-        console.log(numberToFormat);
+       
         let tempString = numberToFormat.toString();
         for (let i = tempString.length - 1; i >= 0; i--) {
             formatedString = tempString.charAt(i) + formatedString;
@@ -53,18 +53,18 @@ export const checkIfHorseIsRaceable = (canRaceTimestamp: number, currentTimestam
 };
 
 export const EnergyValueToColor = (energylvl: number) => {
-    let color = "#000000";
+    let color = "#000";
     if (energylvl >= 0 && energylvl <= 25) {
         if (energylvl >= 0 && energylvl < 10) {
-            color = "bg-green-600";
+            color = 'bg-green-500';
         } else if (energylvl >= 10 && energylvl < 19) {
-            color = "bg-yellow-600";
+            color = "bg-yellow-500";
         } else {
             color = "bg-red-600";
         }
+        return color;
     }
-    console.log(color)
-    return color;
+    //return;
 };
 
 export const checkIfSomeLoading = (arrayOfLoading: Array<boolean>) => {

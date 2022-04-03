@@ -96,14 +96,26 @@ const TableComponent = ({ data, title }: TableProps) => {
                             const isHorseBreadable = checkIfHorseIsBreedable(row['lastBreedTime'],currentTimeStamp, row['bornTime'],row['bloodLine']);
                             let raceable;
                             let breedable;
-                            let energyColor = EnergyValueToColor(row['energy']);
+                            //const energyColor = EnergyValueToColor(row['energy']);
+                            let color = '#000000';
+                            const energylvl = row['energy'];
+
+                            if (energylvl >= 0 && energylvl <= 25) {
+                                if (energylvl >= 0 && energylvl < 10) {
+                                    color = 'bg-green-700';
+                                } else if (energylvl >= 10 && energylvl < 19) {
+                                    color = "bg-yellow-700";
+                                } else {
+                                    color = "bg-red-700";
+                                }
+                            }
 
                             isHorseRaceable ? (raceable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (raceable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
                             isHorseBreadable ? (breedable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (breedable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
                             //currentTimeStamp > row["canRaceAt"] 
 
                             return (
-                                <Table.Row>
+                                <Table.Row key={index}>
                                     <Table.Cell textAlign="center">{index}</Table.Cell>
                                     <Table.Cell textAlign="center" className="text-center cursor-pointer" onClick={() => window.open(`https://${PEGAXY_GAME_ENDPOINTS.PEGAXY}/${PEGAXY_GAME_ENDPOINTS.MYASSETS}/${PEGAXY_GAME_ENDPOINTS.PEGA}/${row["id"]}`, "_blank")}>
                                         <div className="flex justify-center items-center gap-x-2">
@@ -118,7 +130,6 @@ const TableComponent = ({ data, title }: TableProps) => {
                                     <Table.Cell textAlign="center">{breedable}</Table.Cell>
                                     <Table.Cell textAlign="center">{row['renterAddress'] ? <AiOutlineCheck className="text-green-500 text-2xl mx-auto" /> : <AiOutlineClose className="text-red-500 text-2xl mx-auto"/>}</Table.Cell>
                                     <Table.Cell textAlign="center">{row["breedCount"]}</Table.Cell>
-                                    {/* <Table.Cell textAlign="center"><Popup content={<BsLightningFill/>} trigger={<span>{power}</span>}/></Table.Cell> */}
                                     <Table.Cell textAlign="center">{row["speed"]}</Table.Cell>
                                     <Table.Cell textAlign="center">{row["strength"]}</Table.Cell>
                                     <Table.Cell textAlign="center">{row["lightning"]}</Table.Cell>
@@ -128,7 +139,7 @@ const TableComponent = ({ data, title }: TableProps) => {
                                     <Table.Cell textAlign="center">{row["gold"]}</Table.Cell>
                                     <Table.Cell textAlign="center">{row["silver"]}</Table.Cell>
                                     <Table.Cell textAlign="center">{row["bronze"]}</Table.Cell>
-                                    <Table.Cell textAlign="center" className={energyColor}>
+                                    <Table.Cell textAlign="center" className={color}>
                                         <div className="flex justify-center items-center">
                                             {row["energy"]}
                                             <BsLightningFill />
