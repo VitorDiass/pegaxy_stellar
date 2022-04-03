@@ -71,7 +71,7 @@ export const checkIfSomeLoading = (arrayOfLoading: Array<boolean>) => {
     return arrayOfLoading.some((x) => x === true);
 };
 
-export const checkIfHorseIsBreadable = (lastBredTimeTimestamp: number, currentTimestamp: number, bornTimestamp: number, pegaBloodline: string) => {
+export const checkIfHorseIsBreedable = (lastBredTimeTimestamp: number, currentTimestamp: number, bornTimestamp: number, pegaBloodline: string) => {
     const hourToMs = 3600;
     let isBreadable = false;
     if (lastBredTimeTimestamp === 0) {

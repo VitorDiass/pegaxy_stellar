@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Popup, Progress, Table } from "semantic-ui-react";
 import styled from "styled-components";
-import { checkIfHorseIsBreadable, checkIfHorseIsRaceable, EnergyValueToColor, getCurrentTimestamp, getCurrentTimestampMidnight } from "../../utils/utils";
+import { checkIfHorseIsBreedable, checkIfHorseIsRaceable, EnergyValueToColor, getCurrentTimestamp, getCurrentTimestampMidnight } from "../../utils/utils";
 import { BsLightningFill } from "react-icons/bs";
 import { AiOutlineCheck, AiOutlineClose, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaTimes } from "react-icons/fa";
@@ -93,13 +93,13 @@ const TableComponent = ({ data, title }: TableProps) => {
                         {tableData.map((row: any, index: number) => {
                             const currentTimeStamp = getCurrentTimestamp();
                             const isHorseRaceable = checkIfHorseIsRaceable(row['canRaceAt'], currentTimeStamp);
-                            const isHorseBreadable = checkIfHorseIsBreadable(row['lastBreedTime'],currentTimeStamp, row['bornTime'],row['bloodLine']);
-                            let raceable = <></>;
-                            let breadable = <></>;
+                            const isHorseBreadable = checkIfHorseIsBreedable(row['lastBreedTime'],currentTimeStamp, row['bornTime'],row['bloodLine']);
+                            let raceable;
+                            let breedable;
                             let energyColor = EnergyValueToColor(row['energy']);
 
                             isHorseRaceable ? (raceable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (raceable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
-                            isHorseBreadable ? (breadable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (breadable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
+                            isHorseBreadable ? (breedable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (breedable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
                             //currentTimeStamp > row["canRaceAt"] 
 
                             return (
@@ -115,7 +115,7 @@ const TableComponent = ({ data, title }: TableProps) => {
                                     <Table.Cell textAlign="center">{row["gender"]?.charAt(0)}</Table.Cell>
                                     <Table.Cell textAlign="center"><span className="flex justify-center items-center gap-x-1">{Math.round(row["winRate"] * 100)}% <span>| {row['totalRaces']}</span></span></Table.Cell>
                                     <Table.Cell textAlign="center">{raceable}</Table.Cell>
-                                    <Table.Cell textAlign="center">{breadable}</Table.Cell>
+                                    <Table.Cell textAlign="center">{breedable}</Table.Cell>
                                     <Table.Cell textAlign="center">{row['renterAddress'] ? <AiOutlineCheck className="text-green-500 text-2xl mx-auto" /> : <AiOutlineClose className="text-red-500 text-2xl mx-auto"/>}</Table.Cell>
                                     <Table.Cell textAlign="center">{row["breedCount"]}</Table.Cell>
                                     {/* <Table.Cell textAlign="center"><Popup content={<BsLightningFill/>} trigger={<span>{power}</span>}/></Table.Cell> */}
@@ -135,41 +135,9 @@ const TableComponent = ({ data, title }: TableProps) => {
                                         </div>
                                     </Table.Cell>
                                 </Table.Row>
-                            );
+                            )
                         })}
-
-                        {/*   <Table.Row>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                        <Table.Cell>POWER OUTPUT</Table.Cell>
-                    </Table.Row> */}
                     </Table.Body>
-                   {/*  <Table.Header>
-                        <Table.Row>
-                            {tableHeaders.map((header: string) => {
-                                return <StyledTableHeader>{header}</StyledTableHeader>;
-                            })}
-                        </Table.Row>
-                    </Table.Header> */}
                 </StyledTable>
             </div>
         </>
