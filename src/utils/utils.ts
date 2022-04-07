@@ -9,10 +9,8 @@ export const PegaCooldown = {
 export const numberFormat = (numberToFormat: number | string) => {
     let formatedString = "";
     let j = 0;
-    //console.log(numberToFormat)
 
     if (typeof numberToFormat === "number" && !Number.isNaN(numberToFormat)) {
-       
         let tempString = numberToFormat.toString();
         for (let i = tempString.length - 1; i >= 0; i--) {
             formatedString = tempString.charAt(i) + formatedString;
@@ -32,14 +30,9 @@ export const numberFormat = (numberToFormat: number | string) => {
 };
 
 export const getCurrentTimestampMidnight = () => {
-    //if(Object.prototype.toString.call(givenDate) === '[object Date]'){
     const now = new Date();
     now.setHours(0, 0, 0);
-    /*  const year  = now.getFullYear();
-    const month = now.getMonth()+1; // january is month 0
-    const day   = now.getDate() */
     return Math.round(now.getTime() / 1000);
-    //}
 };
 
 export const getCurrentTimestamp = () => {
@@ -56,7 +49,7 @@ export const EnergyValueToColor = (energylvl: number) => {
     let color = "#000";
     if (energylvl >= 0 && energylvl <= 25) {
         if (energylvl >= 0 && energylvl < 10) {
-            color = 'bg-green-500';
+            color = "bg-green-500";
         } else if (energylvl >= 10 && energylvl < 19) {
             color = "bg-yellow-500";
         } else {
@@ -122,4 +115,33 @@ export const checkIfHorseIsBreedable = (lastBredTimeTimestamp: number, currentTi
         }
         return isBreadable;
     }
+};
+
+export const getItemStorage = (itemName: string) => {
+    return JSON.parse(localStorage.getItem(itemName));
+};
+
+export const setItemStorage = (itemName: string, item: string) => {
+    localStorage.setItem(itemName, JSON.stringify(item));
+};
+
+export const setItemStorageAppend = (itemName: string, item: string) => {
+    const oldItem = getItemStorage(itemName);
+
+    if (oldItem) {
+        const walletsArray = oldItem?.split(";");
+        const itemExists = checkIfExistsArray(walletsArray, item);
+
+        if (!itemExists) {
+            const newItem = oldItem + ";" + item;
+            console.log(newItem);
+            setItemStorage(itemName, newItem);
+        }
+    } else {
+        setItemStorage(itemName, item);
+    }
+};
+
+export const checkIfExistsArray = (arrayToCheck: Array<unknown>, itemToCheck: string) => {
+    return arrayToCheck.some((item: unknown) => item === itemToCheck);
 };
