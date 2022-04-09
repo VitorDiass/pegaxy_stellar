@@ -1,8 +1,18 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
-  content: ["./index.html", "./src/**/*.jsx"],
+  content: ["./index.html", "./src/**/*.tsx"],
   darkMode: "media", // 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage : {
+        'backimage' : "url('./src/styles/assets/main.png')"
+      },
+    },
+      screens: {
+        'xs' : '475px',
+        ...defaultTheme.screens
+      }
   },
   variants: {
     extend: {},
