@@ -11,14 +11,12 @@ import {FaCopy} from 'react-icons/fa';
 import { numberFormat } from "../utils/utils";
 
 const WalletInfoComponent = ({ walletAddressProp }: any) => {
-    const [searchParams] = useSearchParams();
     const { walletaddress } = useParams();
-    const [pegaUserData, setPegaUserData] = useState();
-    const [walletAdd, setWalletAdd] = useState(walletAddressProp);
     const [userPegaInfoData, setUserPegaInfoData] = useState([]);
     const [isDataReady, setIsDataReady] = useState<boolean>(false);
     const [userLockedVis, setuserLockedVis] = useState();
     const [userTotalPega, setuserTotalPega] = useState();
+    const [copyToCipBoardMessage, setcopyToCipBoardMessage] = useState(true);
 
     useEffect(() => {
         const getUserPegaInfo = async (walletAdd: string) => {
@@ -52,17 +50,11 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                         <CardInfoComponent>
                             <div className="flex flex-col justify-center items-center gap-x-2">
                                 <div className="color-text-secundary text-base">WALLET</div>
-                                <div className="text-lg cursor-pointer" onClick={() => {navigator.clipboard.writeText(walletaddress)}}>
-                                    <Popup content="Copy to clipboard" position="bottom center"  trigger={<span className="flex items-center gap-x-2">{walletaddress} <FaCopy size={14}/> </span>}/>
+                                <div className="text-lg cursor-pointer" onClick={() => {navigator.clipboard.writeText(walletaddress); setcopyToCipBoardMessage(false); setTimeout(() => {setcopyToCipBoardMessage(true)},4000)}}>
+                                    {copyToCipBoardMessage ? <Popup content="Copy to clipboard" position="bottom center"  trigger={<span className="flex items-center gap-x-2">{walletaddress} <FaCopy size={14}/> </span>}/> : 
+                                    <Popup content="Copied!" position="bottom center"  trigger={<span className="flex items-center gap-x-2">{walletaddress} <FaCopy size={14}/> </span>}/>}
                                 </div>
                             </div>
-                            {/*     <div className="flex justify-start items-center gap-x-2">
-                            <div className="color-text-secundary text-sm">LOCKED</div>
-                            <div className="">{walletaddress}</div>
-                                <span>
-                                    <img src="src/styles/assets/vis.png" width={16} height={16}></img>
-                                </span> 
-                        </div> */}
                         </CardInfoComponent>
                     </span>
                     <span className="col-span-3 xl:col-span-1">

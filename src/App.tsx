@@ -12,6 +12,8 @@ import CardInfoComponent from "./component/cardInfo";
 import TableComponent from "./component/table/table";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import WalletInfoComponent from "./pages/walletInfo";
+import RecentWalletComponent from "./component/recentWallet/recentWallet";
+import { getItemStorage, setItemStorageAppend } from "./utils/utils";
 
 const App = () => {
   const [tableData, setTableData] = useState([]);
@@ -19,18 +21,28 @@ const App = () => {
   const navigate = useNavigate();
 
   const handleSearch = async (input : string)  => {
-    if(typeof input === 'string'){
+    if(typeof input === 'string' && input){
+    
+      const walletAddRegex = new RegExp("^0x[a-fA-F0-9]{40}$");
+      console.log(input, walletAddRegex)
+      const isValidInput = walletAddRegex.test(input);
+      console.log(isValidInput)
 
-      navigate(`/${input}`)
+      if(isValidInput){
+        setItemStorageAppend('wallets',input);
+        navigate(`/${input}`)
+      }else{
+        alert('NOT A VALID WALLET ADDRESS')
+      }
+
+
+      //IF WALLET ADD 
       //TODO SAFE INPUT
-     /*  setWalletAddress(input) */
-    /*   try {
-        const response = await userOwnedPegaInfo(input);
-        console.log(response.data)
-        setTableData(response.data)
-      } catch (error) {
-        console.log(error)
-      } */
+    /*   const wallets = localStorage.getItem('walletadds');
+      const newWallets = wallets?.concat(`,${input}`)
+      localStorage.setItem("walletadds",newWallets);
+      console.log(localStorage.getItem('walletadds')); */
+     
     }
   }
 
@@ -46,6 +58,7 @@ const App = () => {
         <StatusBarComponent/>
         <MainHeaderComponent />
         <SearchComponent handleSearchInput={handleSearch}/>
+        <RecentWalletComponent/>
        {/*  {walletAddress && <WalletInfoComponent walletAddressProp={walletAddress}/>} */}
      {/*    <div className="mt-20">
           <CardInfoComponent>

@@ -21,7 +21,7 @@ interface Card{
     classNames? : string
 }
 
-const CardInfoComponent : React.FC<Card & React.HTMLAttributes<HTMLDivElement>> = ({children}) => {
+const CardInfoComponent : React.FC<Card & React.HTMLAttributes<HTMLDivElement>> = ({classNames, children}) => {
   return (
   <>
     <StyledCard>

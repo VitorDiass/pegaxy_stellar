@@ -31,7 +31,7 @@ const SearchComponent = ({ handleSearchInput }: Search) => {
     };
 
     return (
-        <div className="flex justify-center mt-14">
+        <div className="flex justify-center mt-10">
             <StyledInput
                 loading={false}
                 iconPosition="left"

@@ -25,6 +25,7 @@
     /*INFO CARDS COLORS*/
     --color-card-bg : rgba(6, 8, 14, 0.5);
     --color-text-secundary : #B1B1B1;
+    --color-text-secundary-hover : #747474;
     --color-text-subsecundary : #8f8f8f;
 
     --color-card-bg-alt : rgba(6, 8, 14, 0.5);;
@@ -48,6 +49,14 @@
     --color-blue-api : #5887A5;
     --color-red-api : #A43352;
 
+    /*PEGA STATUS COLORS*/
+    --color-pega-speed : rgb(255, 143, 6);
+    --color-pega-strength : rgb(61, 255, 129);
+    --color-pega-lightning : rgb(255, 218, 28);
+    --color-pega-wind : rgb(255, 255, 255);
+    --color-pega-water : rgb(47, 188, 237);
+    --color-pega-fire : rgb(255, 31, 0);
+
 }
 
 .bg-color-main {
@@ -60,6 +69,10 @@
 
 .color-text-secundary {
     color : var(--color-text-secundary) !important;
+}
+
+.color-text-secundary-hover:hover {
+    color : var(--color-text-secundary-hover) !important;
 }
 
 .color-text-subsecundary {
@@ -103,4 +116,39 @@
     .card-width {
         min-width: 500px;
     }
+}
+
+.ui.dropdown>.dropdown.icon {
+    margin-left : 4px !important;
+}
+
+/* .ui.dropdown .menu {
+    max-height: 300px;
+    overflow-y: scroll;
+    min-width: 150px !important;
+} */
+
+
+.pega-status-speed {
+    color : var(--color-pega-speed)
+}
+
+.pega-status-strength {
+    color : var(--color-pega-strength)
+}
+
+.pega-status-lightning {
+    color : var(--color-pega-lightning)
+}
+
+.pega-status-wind {
+    color : var(--color-pega-wind)
+}
+
+.pega-status-water {
+    color : var(--color-pega-water)
+}
+
+.pega-status-fire {
+    color : var(--color-pega-fire)
 }

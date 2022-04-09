@@ -145,3 +145,19 @@ export const setItemStorageAppend = (itemName: string, item: string) => {
 export const checkIfExistsArray = (arrayToCheck: Array<unknown>, itemToCheck: string) => {
     return arrayToCheck.some((item: unknown) => item === itemToCheck);
 };
+
+export const removeStorageItem = (itemName : string) => {
+    localStorage.removeItem(itemName);
+}
+
+export const removeStorageElementFromItem = (itemName : string, elemToRemove : any) => {
+    const item = getItemStorage(itemName);
+
+    if(item) {
+        const splitedItem = item.split(";");
+        const index = splitedItem.indexOf(elemToRemove);
+        const resultItem = splitedItem.splice(index, 1);
+    
+        splitedItem.length > 0 ? setItemStorage(itemName, splitedItem.toString()) : removeStorageItem(itemName)
+    }
+} 

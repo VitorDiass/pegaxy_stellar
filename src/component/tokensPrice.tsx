@@ -37,13 +37,13 @@ const TokensPriceComponent = () => {
     return (
         <div className="w-52">
             <div className="flex justify-between items-center">
-                <div className="flex">
+                <div className="flex gap-x-1">
                     <img src="/images/vis.png" width={20}></img>
-                    &nbsp;<span>${visprice}</span> <span className="text-xs">&nbsp;</span>
+                    <span>${visprice}</span> <span className="text-xs"></span>
                 </div>
-                <div className="flex">
+                <div className="flex items-center gap-x-1">
                     <img src="/images/pgx.png" width={20}></img>
-                    &nbsp;<span>${pgxprice}</span> <span className="text-xs">&nbsp;</span>
+                    <span>${pgxprice}</span> <span className="text-xs"></span>
                 </div>
             </div>
         </div>
