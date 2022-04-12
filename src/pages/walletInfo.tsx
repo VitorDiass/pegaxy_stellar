@@ -9,6 +9,10 @@ import { userPegaAndVisService } from "../services/endpoints/assets";
 import { userOwnedPegaInfo } from "../services/endpoints/pegas";
 import {FaCopy} from 'react-icons/fa';
 import { numberFormat } from "../utils/utils";
+import toast, {Toaster} from 'react-hot-toast';
+import { AxiosError } from "axios";
+import { MyToaster, TOAST_TYPE } from "../toast/toast";
+
 
 const WalletInfoComponent = ({ walletAddressProp }: any) => {
     const { walletaddress } = useParams();
@@ -20,24 +24,36 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
 
     useEffect(() => {
         const getUserPegaInfo = async (walletAdd: string) => {
-            setIsDataReady(false);
-            if (walletAdd) {
-                const response = await userOwnedPegaInfo(walletAdd);
-                setUserPegaInfoData(response.data);
+            try{
+                setIsDataReady(false);
+                if (walletAdd) {
+                    const response = await userOwnedPegaInfo(walletAdd);
+                    setUserPegaInfoData(response.data);
+                    setIsDataReady(true);
+                }
+            }catch(e : AxiosError | any) {
+                MyToaster(e.message, 'get_user_pega_info',TOAST_TYPE.ERROR)
+            }finally {
                 setIsDataReady(true);
             }
         };
         getUserPegaInfo(walletaddress);
 
         const getUserPegaAndVis = async (walletAdd: string) => {
-            if (walletAdd) {
-                const response = await userPegaAndVisService(walletAdd);
-                setuserLockedVis(response?.data?.lockedVis || "N/A");
-                setuserTotalPega(response?.data?.pega || "N/A");
+            try{
+                if (walletAdd) {
+                    const response = await userPegaAndVisService(walletAdd);
+                    setuserLockedVis(response?.data?.lockedVis || "N/A");
+                    setuserTotalPega(response?.data?.pega || "N/A");
+                }
+            }catch(e : AxiosError | any){
+                MyToaster(e.message, 'get_user_pega_and_vis',TOAST_TYPE.ERROR)
             }
         };
         getUserPegaAndVis(walletaddress);
         
+
+        document.title = 'Pegaxy Stellar' + " - " + "Wallet"
         //setWalletAdd(walletaddress);
     }, []);
 

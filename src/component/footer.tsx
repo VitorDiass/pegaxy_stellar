@@ -1,5 +1,4 @@
 import React from 'react'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { FaDiscord, FaEnvelope, FaHeart } from 'react-icons/fa'
 
 function Footer() {
