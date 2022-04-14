@@ -28,7 +28,7 @@ const TokensPriceComponent = ({refreshTimeProp} : TokenPrice) => {
             }
                 }
             }catch(e : AxiosError | any){
-                MyToaster(e.message, 'vis_service', TOAST_TYPE.ERROR);
+                MyToaster('[VIS_PRICE_SERVICE] - ' + e.message, 'vis_service', TOAST_TYPE.ERROR);
             }
             
         };
@@ -44,7 +44,7 @@ const TokensPriceComponent = ({refreshTimeProp} : TokenPrice) => {
                 }
 
             }catch(e : AxiosError | any){
-                MyToaster(e.message, 'pgx_service', TOAST_TYPE.ERROR);
+                MyToaster('[PGX_PRICE_SERVICE] - ' + e.message, 'pgx_service', TOAST_TYPE.ERROR);
             }
         };
         getVisPrice();

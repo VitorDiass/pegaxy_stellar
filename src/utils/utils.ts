@@ -22,7 +22,6 @@ export const numberFormat = (numberToFormat: number | string) => {
         }
     } else {
         if (typeof numberToFormat === "string") {
-            console.log(numberToFormat);
             formatedString = numberToFormat;
         }
     }
@@ -134,7 +133,6 @@ export const setItemStorageAppend = (itemName: string, item: string) => {
 
         if (!itemExists) {
             const newItem = oldItem + ";" + item;
-            console.log(newItem);
             setItemStorage(itemName, newItem);
         }
     } else {

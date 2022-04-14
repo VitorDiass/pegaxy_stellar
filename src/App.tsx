@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LayoutComponent from "./component/layout";
+import LayoutMainPageComponent from "./component/layoutMainPage";
 import MainHeaderComponent from "./component/mainHeader";
 import RecentWalletComponent from "./component/recentWallet/recentWallet";
 import SearchComponent from "./component/search";
@@ -37,12 +37,12 @@ const App = () => {
 
   return (
     <>
-      <LayoutComponent>
+      <LayoutMainPageComponent>
         <StatusBarComponent/>
         <MainHeaderComponent />
         <SearchComponent handleSearchInput={handleSearch}/>
         <RecentWalletComponent/>
-      </LayoutComponent>
+      </LayoutMainPageComponent>
     </>
   );
 };

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { AxiosError } from "axios";
+import { FaCopy } from 'react-icons/fa';
+import { useParams } from "react-router-dom";
 import { Loader, Popup } from "semantic-ui-react";
 import CardInfoComponent from "../component/cardInfo";
 import LayoutComponent from "../component/layout";
 import StatusBarComponent from "../component/statusbar";
 import TableComponent from "../component/table/table";
+import { tableDemoData } from "../faker/faker";
 import { userPegaAndVisService } from "../services/endpoints/assets";
 import { userOwnedPegaInfo } from "../services/endpoints/pegas";
-import {FaCopy} from 'react-icons/fa';
-import { numberFormat } from "../utils/utils";
-import toast, {Toaster} from 'react-hot-toast';
-import { AxiosError } from "axios";
 import { MyToaster, TOAST_TYPE } from "../toast/toast";
+import { numberFormat } from "../utils/utils";
 
 
 const WalletInfoComponent = ({ walletAddressProp }: any) => {
@@ -21,6 +21,8 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
     const [userLockedVis, setuserLockedVis] = useState();
     const [userTotalPega, setuserTotalPega] = useState();
     const [copyToCipBoardMessage, setcopyToCipBoardMessage] = useState(true);
+
+    const [testData, setTestData] = useState(tableDemoData)
 
     useEffect(() => {
         const getUserPegaInfo = async (walletAdd: string) => {
@@ -32,7 +34,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                     setIsDataReady(true);
                 }
             }catch(e : AxiosError | any) {
-                MyToaster(e.message, 'get_user_pega_info',TOAST_TYPE.ERROR)
+                MyToaster('[USER_PEGA_INFO] - ' + e.message, 'get_user_pega_info',TOAST_TYPE.ERROR)
             }finally {
                 setIsDataReady(true);
             }
@@ -47,7 +49,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                     setuserTotalPega(response?.data?.pega || "N/A");
                 }
             }catch(e : AxiosError | any){
-                MyToaster(e.message, 'get_user_pega_and_vis',TOAST_TYPE.ERROR)
+                MyToaster('[USER_PEGA_AND_VIS] - ' + e.message, 'get_user_pega_and_vis',TOAST_TYPE.ERROR)
             }
         };
         getUserPegaAndVis(walletaddress);
@@ -66,7 +68,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                         <CardInfoComponent>
                             <div className="flex flex-col justify-center items-center gap-x-2">
                                 <div className="color-text-secundary text-base">WALLET</div>
-                                <div className="text-lg cursor-pointer" onClick={() => {navigator.clipboard.writeText(walletaddress); setcopyToCipBoardMessage(false); setTimeout(() => {setcopyToCipBoardMessage(true)},4000)}}>
+                                <div className="text-lg cursor-pointer color-text-secundary-hover" onClick={() => {navigator.clipboard.writeText(walletaddress); setcopyToCipBoardMessage(false); setTimeout(() => {setcopyToCipBoardMessage(true)},4000)}}>
                                     {copyToCipBoardMessage ? <Popup content="Copy to clipboard" position="bottom center"  trigger={<span className="flex items-center gap-x-2">{walletaddress} <FaCopy size={14}/> </span>}/> : 
                                     <Popup content="Copied!" position="bottom center"  trigger={<span className="flex items-center gap-x-2">{walletaddress} <FaCopy size={14}/> </span>}/>}
                                 </div>
@@ -95,7 +97,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                 </div>
                 <div className="grid grid-cols-1 mt-10">
                     {/*  <CardInfoComponent> */}
-                    {isDataReady ? <TableComponent data={userPegaInfoData} title=""></TableComponent> : <Loader active/>}
+                    {isDataReady ? <TableComponent data={testData} title=""></TableComponent> : <Loader active/>}
                     {/* </CardInfoComponent> */}
                 </div>
             </LayoutComponent>

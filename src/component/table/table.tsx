@@ -45,9 +45,9 @@ const TableComponent = ({ data, title }: TableProps) => {
         { key: "gender", text: "Gender", value: "gender" },
         { key: "winrate", text: "Winrate", value: "winRate" },
         { key: "totalraces", text: "Races", value: "totalRaces", isHeader: false },
-        { key: "raceable", text: "Raceable", value: "raceable" },
-        { key: "breedable", text: "Breedable", value: "breedable" },
-        { key: "rented", text: "Rented", value: "rented" },
+        { key: "raceable", text: "Raceable", value: "canRaceAt" },
+        { key: "breedable", text: "Breedable", value: "canBreedAt" },
+        { key: "rented", text: "Rented", value: "renterAddress" },
         { key: "breed", text: "Breed", value: "breedCount" },
         { key: "speed", text: <Popup content="Speed" trigger={<div>🏇</div>} />, value: "speed" },
         { key: "strength", text: <Popup content="Strength" trigger={<div>✊</div>} />, value: "strength" },
@@ -69,13 +69,17 @@ const TableComponent = ({ data, title }: TableProps) => {
 
     const sortdata = (direction: string, column: string, data: any) => {
         let sorted = data.sort((a: any, b: any) => {
-            if (a[column] < b[column]) {
-                return -1;
+            if (typeof a[column] === "string") {
+                return a[column].localeCompare(b[column]);
+            } else {
+                if (a[column] < b[column]) {
+                    return -1;
+                }
+                if (a[column] > b[column]) {
+                    return 1;
+                }
+                return 0;
             }
-            if (a[column] > b[column]) {
-                return 1;
-            }
-            return 0;
         });
 
         if (direction === "descending") {
@@ -85,7 +89,6 @@ const TableComponent = ({ data, title }: TableProps) => {
     };
 
     useEffect(() => {
-        console.log(sortdir, sortby, tableData);
         let sortedData = new Array();
         sortedData = sortdata(sortdir, sortby, data).slice();
         setTableData(sortedData);
