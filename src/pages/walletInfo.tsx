@@ -22,7 +22,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
     const [userTotalPega, setuserTotalPega] = useState();
     const [copyToCipBoardMessage, setcopyToCipBoardMessage] = useState(true);
 
-    const [testData, setTestData] = useState(tableDemoData)
+    //const [testData, setTestData] = useState(tableDemoData)
 
     useEffect(() => {
         const getUserPegaInfo = async (walletAdd: string) => {
@@ -97,7 +97,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                 </div>
                 <div className="grid grid-cols-1 mt-10">
                     {/*  <CardInfoComponent> */}
-                    {isDataReady ? <TableComponent data={testData} title=""></TableComponent> : <Loader active/>}
+                    {isDataReady ? <TableComponent data={userPegaInfoData} title=""></TableComponent> : <Loader active/>}
                     {/* </CardInfoComponent> */}
                 </div>
             </LayoutComponent>
