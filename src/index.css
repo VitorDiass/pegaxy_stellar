@@ -17,18 +17,26 @@
     color : white;
     font-family: "Roboto";
 
+    /* --color-bg-main : #1b1f21; */
+    --color-bg-main : #2C2D34;
+    
+
     --color-white : white;
     --color-text-muted : #B1B1B1;
-    --color-success : #5887A5;
-    --color-danger : #A43352;
+   /*  --color-success : #5887A5;
+    --color-danger : #A43352; */
 
     /*INFO CARDS COLORS*/
     --color-card-bg : rgba(6, 8, 14, 0.5);
     --color-text-secundary : #B1B1B1;
-    --color-text-secundary-hover : #747474;
+    --color-text-secundary-hover : #888888;
+    --color-bg-secundary-hover : #8888881a;
     --color-text-subsecundary : #8f8f8f;
 
-    --color-card-bg-alt : rgba(6, 8, 14, 0.5);;
+    --color-card-bg-alt : rgba(6, 8, 14, 0.6);
+
+    /*TOAST*/
+    --color-toast-bg : #181921;
 
     /*MAIN MENU CARD COLORS*/
     --color-light-blue : #24b7dd;
@@ -59,12 +67,8 @@
 
 }
 
-.bg-color-main {
-    background-color: #242D51;
-}
-
 .bg-color-from-card {
-    background-color:  var( --color-card-bg-alt);
+    background-color : var( --color-card-bg-alt);
 }
 
 .color-text-secundary {
@@ -75,10 +79,17 @@
     color : var(--color-text-secundary-hover) !important;
 }
 
+.color-bg-secundary-hover:hover {
+    background-color : var(--color-bg-secundary-hover) !important;
+}
+
 .color-text-subsecundary {
     color : var(--color-text-subsecundary);
 }
 
+.bg-color-main {
+    background-color : var(--color-bg-main);
+}
 
 .header {
     letter-spacing: 2px;
@@ -122,12 +133,9 @@
     margin-left : 4px !important;
 }
 
-/* .ui.dropdown .menu {
-    max-height: 300px;
-    overflow-y: scroll;
-    min-width: 150px !important;
-} */
-
+.ui.dropdown .scrolling.menu, .ui.scrolling.dropdown .menu {
+    width:150px !important;
+}
 
 .pega-status-speed {
     color : var(--color-pega-speed)

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FaTimes, FaWallet } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { getItemStorage, removeStorageElementFromItem } from "../../utils/utils";
 import CardInfoComponent from "../cardInfo";
-import styled from "styled-components";
 
 const StyledLink = styled(Link)`
     color : white !important;

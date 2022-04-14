@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css';
-import GeneralComponent from "./pages/overview";
-import RoutesComponent from "./routes";
 import AppContext from "./context/appContext";
-
+import "./index.css";
+import RoutesComponent from "./routes";
+import toast, {Toaster} from 'react-hot-toast';
 
 const storageLogged = localStorage.getItem('logged');
 let logged = false
@@ -30,6 +28,7 @@ ReactDOM.render(
     {logged && 
     <BrowserRouter>
     <AppContext.Provider value={{appContext : {betaApp : true}}}>
+      <Toaster/>
       <RoutesComponent/>
     </AppContext.Provider>
     </BrowserRouter>
