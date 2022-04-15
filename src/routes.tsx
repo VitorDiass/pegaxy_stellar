@@ -4,8 +4,8 @@ import App from './App';
 import DemoComponent from './pages/demo';
 import WalletInfoComponent from './pages/walletInfo';
 import ReactGA from 'react-ga';
-const GA = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID
-ReactGA.initialize(GA.toString());
+const GA = "G-JV591BP2V6";
+ReactGA.initialize(GA);
 
 function RoutesComponent() {
   useEffect(() => {
