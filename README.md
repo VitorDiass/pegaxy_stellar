@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c2690b44-7990-4afe-ae3d-21a70b4bd2d4/deploy-status)](https://app.netlify.com/sites/pegaxystellar/deploys)****
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c2690b44-7990-4afe-ae3d-21a70b4bd2d4/deploy-status)](https://app.netlify.com/sites/pegaxystellar/deploys)
 
 # Vite + ReactJs + TailwindCss in JIT Template
 
