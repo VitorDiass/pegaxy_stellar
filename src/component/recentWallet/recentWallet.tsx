@@ -28,8 +28,9 @@ const RecentWalletComponent = () => {
         <div className="flex justify-center items-center mt-14">
             <div className="w-5/12">
                 <CardInfoComponent>
-                    <div className="flex justify-center items-center color-text-secundary gap-x-2 mb-6 text-base">
-                        <FaWallet className="mb-0.5" size={15} /> RECENT WALLETS
+                    <div className="flex flex-col justify-center items-center color-text-secundary gap-x-2 mb-12 text-base">
+                        <div className="flex items-center gap-x-2 text-base"><FaWallet className="mb-0.5" size={15} /> RECENT WALLETS</div>
+                        <div className="flex"><small>Your address is just saved on your browser, Pegaxy Stellar does not save anything internally</small></div>
                     </div>
                     <div className="flex flex-col justify-center">
                         {wallets?.length > 0 ? (

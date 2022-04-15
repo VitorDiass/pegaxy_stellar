@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
+import ReactGA from 'react-ga';
 import { useNavigate } from "react-router-dom";
 import LayoutMainPageComponent from "./component/layoutMainPage";
 import MainHeaderComponent from "./component/mainHeader";
 import RecentWalletComponent from "./component/recentWallet/recentWallet";
 import SearchComponent from "./component/search";
 import StatusBarComponent from "./component/statusbar";
-import { setItemStorageAppend } from "./utils/utils";
-import toast, { Toaster } from 'react-hot-toast';
 import { MyToaster, TOAST_TYPE } from "./toast/toast";
+import { setItemStorageAppend } from "./utils/utils";
+/* const GA = import.meta.env.VITE_GOOGLE_ANALYTICS_TRACKING_ID
+ReactGA.initialize(GA.toString());
+ */
+
 
 const App = () => {
-  const [tableData, setTableData] = useState([]);
-  const [walletAddress, setWalletAddress] = useState<string>('')
+/*   const [tableData, setTableData] = useState([]);
+  const [walletAddress, setWalletAddress] = useState<string>('') */
   const navigate = useNavigate();
 
   const handleSearch = async (input : string)  => {
@@ -25,7 +29,6 @@ const App = () => {
         navigate(`/${input}`)
       }else{
         MyToaster('NOT A VALID WALLET ADDRESS','wallet_input',TOAST_TYPE.ERROR);
-      
       }
     }
   }

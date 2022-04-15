@@ -42,6 +42,7 @@ const TableComponent = ({ data, title }: TableProps) => {
         { key: "id", text: "ID", value: "id" },
         { key: "name", text: "Name", value: "name" },
         { key: "bloodline", text: "Bloodline", value: "bloodLine" },
+        { key: "breedType", text: "Rarity", value: "breedType" },
         { key: "gender", text: "Gender", value: "gender" },
         { key: "winrate", text: "Winrate", value: "winRate" },
         { key: "totalraces", text: "Races", value: "totalRaces", isHeader: false },
@@ -164,7 +165,7 @@ const TableComponent = ({ data, title }: TableProps) => {
 
                                 return (
                                     <Table.Row key={index}>
-                                        <Table.Cell textAlign="center">{index}</Table.Cell>
+                                        <Table.Cell  textAlign="center">{index}</Table.Cell>
                                         <Table.Cell textAlign="center" className="text-center cursor-pointer" onClick={() => window.open(`https://${PEGAXY_GAME_ENDPOINTS.PEGAXY}/${PEGAXY_GAME_ENDPOINTS.MYASSETS}/${PEGAXY_GAME_ENDPOINTS.PEGA}/${row["id"]}`, "_blank")}>
                                             <div className="flex justify-center items-center gap-x-2">
                                                 {row["id"]} <HiOutlineExternalLink size={14} />
@@ -172,6 +173,7 @@ const TableComponent = ({ data, title }: TableProps) => {
                                         </Table.Cell>
                                         <Table.Cell textAlign="center">{row["name"]}</Table.Cell>
                                         <Table.Cell textAlign="center">{row["bloodLine"]}</Table.Cell>
+                                        <Table.Cell textAlign="center">{row["breedType"]}</Table.Cell>
                                         <Table.Cell textAlign="center">{row["gender"]?.charAt(0)}</Table.Cell>
                                         <Table.Cell textAlign="center">
                                             <span className="flex justify-center items-center gap-x-1">
