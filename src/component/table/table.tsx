@@ -49,7 +49,7 @@ const TableComponent = ({ data, title }: TableProps) => {
         { key: "raceable", text: "Raceable", value: "canRaceAt" },
         { key: "breedable", text: "Breedable", value: "canBreedAt" },
         { key: "rented", text: "Rented", value: "renterAddress" },
-        { key: "breed", text: "Breed", value: "breedCount" },
+        { key: "breed", text: "Breed Count", value: "breedCount" },
         { key: "speed", text: <Popup content="Speed" trigger={<div>🏇</div>} />, value: "speed" },
         { key: "strength", text: <Popup content="Strength" trigger={<div>✊</div>} />, value: "strength" },
         { key: "lightning", text: <Popup content="Lightning" trigger={<div>⚡</div>} />, value: "lightning" },
@@ -70,7 +70,11 @@ const TableComponent = ({ data, title }: TableProps) => {
 
     const sortdata = (direction: string, column: string, data: any) => {
         let sorted = data.sort((a: any, b: any) => {
+            const position = direction === 'ascending' ? 1 : -1;
+            
             if (typeof a[column] === "string") {
+                if(!a[column]) return position;
+                if(!b[column]) return -position;
                 return a[column].localeCompare(b[column]);
             } else {
                 if (a[column] < b[column]) {
@@ -128,8 +132,8 @@ const TableComponent = ({ data, title }: TableProps) => {
                 <StyledTable size="small" unstackable padded compact selectable inverted>
                     <Table.Header>
                         <Table.Row>
-                            {tableHeaders.map((header: any) => {
-                                return header.isHeader !== false && <StyledTableHeader>{header.text}</StyledTableHeader>;
+                            {tableHeaders.map((header: any, index : number) => {
+                                return header.isHeader !== false && <StyledTableHeader key={index}>{header.text}</StyledTableHeader>;
                             })}
                         </Table.Row>
                     </Table.Header>
@@ -142,9 +146,11 @@ const TableComponent = ({ data, title }: TableProps) => {
                             </Table.Row>
                         ) : (
                             tableData.map((row: any, index: number) => {
+                                
                                 const currentTimeStamp = getCurrentTimestamp();
                                 const isHorseRaceable = checkIfHorseIsRaceable(row["canRaceAt"], currentTimeStamp);
-                                const isHorseBreadable = checkIfHorseIsBreedable(row["lastBreedTime"], currentTimeStamp, row["bornTime"], row["bloodLine"]);
+                                //const isHorseBreadable = checkIfHorseIsBreedable(row["lastBreedTime"], currentTimeStamp, row["bornTime"], row["bloodLine"]);
+                                const isHorseBreedable = checkIfHorseIsBreedable(row['canBreedAt'], currentTimeStamp);
                                 let raceable;
                                 let breedable;
                                 let color = "#000000";
@@ -161,7 +167,7 @@ const TableComponent = ({ data, title }: TableProps) => {
                                 }
 
                                 isHorseRaceable ? (raceable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (raceable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
-                                isHorseBreadable ? (breedable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (breedable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
+                                isHorseBreedable ? (breedable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (breedable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
 
                                 return (
                                     <Table.Row key={index}>

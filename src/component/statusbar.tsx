@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStatus } from "../hooks/useStatus";
+/* import { useStatus } from "../hooks/useStatus"; */
 import GoBackComponent from "./goBack";
 import LogoComponent from "./logo";
 import TokensPriceComponent from "./tokensPrice";
@@ -10,13 +10,13 @@ interface StatusBar {
 
 const StatusBarComponent = ({ gobackprop }: StatusBar) => {
     const [goback, setGoBack] = useState<boolean>(gobackprop || false);
-    const status = useStatus();
+ /*    const status = useStatus(); */
 
     return (
         <>
-            <div className={goback ? 'grid grid-cols-2 text-gray-400 mb-16' : 'grid grid-cols-2 text-gray-400 mb-16 px-20'}>
+            <div className={goback ? 'grid grid-cols-2 text-gray-400 mb-16' : 'grid grid-cols-2 text-gray-400 mb-16 lg:px-16'}>
                 {goback && (
-                    <span className="flex justify-start">
+                    <span className="flex justify-start items-center">
                         <GoBackComponent />
                     </span>
                 )}

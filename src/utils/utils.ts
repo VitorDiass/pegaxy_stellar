@@ -63,6 +63,10 @@ export const checkIfSomeLoading = (arrayOfLoading: Array<boolean>) => {
     return arrayOfLoading.some((x) => x === true);
 };
 
+export const checkIfHorseIsBreedable = (canBreedTimestamp : number, currentTimestamp : number) => {
+    return currentTimestamp > canBreedTimestamp
+}
+/* 
 export const checkIfHorseIsBreedable = (lastBredTimeTimestamp: number, currentTimestamp: number, bornTimestamp: number, pegaBloodline: string) => {
     const hourToMs = 3600;
     let isBreadable = false;
@@ -114,7 +118,7 @@ export const checkIfHorseIsBreedable = (lastBredTimeTimestamp: number, currentTi
         }
         return isBreadable;
     }
-};
+}; */
 
 export const getItemStorage = (itemName: string) => {
     return JSON.parse(localStorage.getItem(itemName));
@@ -159,3 +163,11 @@ export const removeStorageElementFromItem = (itemName : string, elemToRemove : a
         splitedItem.length > 0 ? setItemStorage(itemName, splitedItem.toString()) : removeStorageItem(itemName)
     }
 } 
+
+
+export const shortenWalletAddress = (walletAddress : string) => {
+    if(walletAddress){
+        return walletAddress.substring(0,8) + "..." + walletAddress.substring(walletAddress.length-8, walletAddress.length-1);
+    }
+    return '';
+}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ReactGA from 'react-ga';
 import { useNavigate } from "react-router-dom";
 import LayoutMainPageComponent from "./component/layoutMainPage";
 import MainHeaderComponent from "./component/mainHeader";

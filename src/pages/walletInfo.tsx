@@ -11,7 +11,7 @@ import { tableDemoData } from "../faker/faker";
 import { userPegaAndVisService } from "../services/endpoints/assets";
 import { userOwnedPegaInfo } from "../services/endpoints/pegas";
 import { MyToaster, TOAST_TYPE } from "../toast/toast";
-import { numberFormat } from "../utils/utils";
+import { numberFormat, shortenWalletAddress } from "../utils/utils";
 
 
 const WalletInfoComponent = ({ walletAddressProp }: any) => {
@@ -68,9 +68,8 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                         <CardInfoComponent>
                             <div className="flex flex-col justify-center items-center gap-x-2">
                                 <div className="color-text-secundary text-base">WALLET</div>
-                                <div className="text-lg cursor-pointer color-text-secundary-hover" onClick={() => {navigator.clipboard.writeText(walletaddress); setcopyToCipBoardMessage(false); setTimeout(() => {setcopyToCipBoardMessage(true)},4000)}}>
-                                    {copyToCipBoardMessage ? <Popup content="Copy to clipboard" position="bottom center"  trigger={<span className="flex items-center gap-x-2">{walletaddress} <FaCopy size={14}/> </span>}/> : 
-                                    <Popup content="Copied!" position="bottom center"  trigger={<span className="flex items-center gap-x-2">{walletaddress} <FaCopy size={14}/> </span>}/>}
+                                <div className="text-lg cursor-pointer color-text-secundary-hover" onClick={() => {navigator.clipboard.writeText(walletaddress); MyToaster('Copied to clipboard', 'copy_to_clipboard', TOAST_TYPE.SUCCESS)}}>
+                                    <span className="flex items-center gap-x-2"><FaCopy />{shortenWalletAddress(walletaddress)}</span>
                                 </div>
                             </div>
                         </CardInfoComponent>
