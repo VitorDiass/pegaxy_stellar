@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { healthService } from '../services/endpoints/health';
 
@@ -15,3 +15,4 @@ export const useStatus = () => {
 
   return apiStatus;
 }
+ */
