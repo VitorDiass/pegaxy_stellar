@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import App from './App';
-import DemoComponent from './pages/demo';
+import DemoPage from './pages/demo';
 import WalletInfoComponent from './pages/walletInfo';
 import ReactGA from "react-ga4";
+import ChangelogPage from './pages/changelog';
 const GA = "";
 
 
@@ -28,7 +29,8 @@ function RoutesComponent() {
     <>
       <Routes>
         <Route path="/" element={<App/>}/>
-        <Route path="/demo" element={<DemoComponent/>}/>
+        <Route path="/demo" element={<DemoPage/>}/>
+        <Route path="/changelog" element={<ChangelogPage/>}/>
         <Route path="/:walletaddress" element={<WalletInfoComponent/>}/>
         <Route path="*" element={<App/>}/>
       </Routes>
