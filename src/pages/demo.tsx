@@ -7,7 +7,7 @@ import TableComponent from "../component/table/table";
 import { tableDemoData } from "../faker/faker";
 import { numberFormat } from "../utils/utils";
 
-const DemoComponent = () => {
+const DemoPage = () => {
     const [demoData, setDemoData] = useState(tableDemoData);
     const [isDataReady, setIsDataReady] = useState(false);
 
@@ -61,4 +61,4 @@ const DemoComponent = () => {
     );
 };
 
-export default DemoComponent;
+export default DemoPage;

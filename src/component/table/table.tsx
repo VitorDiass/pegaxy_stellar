@@ -5,7 +5,7 @@ import { HiOutlineExternalLink } from "react-icons/hi";
 import { Dropdown, Popup, Table } from "semantic-ui-react";
 import styled from "styled-components";
 import { PEGAXY_GAME_ENDPOINTS } from "../../services/apiconfig";
-import { checkIfHorseIsBreedable, checkIfHorseIsRaceable, getCurrentTimestamp } from "../../utils/utils";
+import { checkIfHorseIsBreedable, checkIfHorseIsRaceable, getCurrentTimestamp, timeDiff } from "../../utils/utils";
 
 const StyledTable = styled(Table)`
     background-color: var(--color-card-bg-alt) !important;
@@ -35,7 +35,6 @@ interface HeaderMapping {
 const TableComponent = ({ data, title }: TableProps) => {
     const [sortdir, setSortdir] = useState("ascending");
     const [sortby, setSortby] = useState("name");
-
     const [tableHeaders, setTableHeaders] = useState([
         { key: "orderby", text: "Order by", value: "orderby", disabled: true, isHeader: false },
         { key: "no", text: "No", value: "no", disabled: true },
@@ -44,7 +43,7 @@ const TableComponent = ({ data, title }: TableProps) => {
         { key: "bloodline", text: "Bloodline", value: "bloodLine" },
         { key: "breedType", text: "Rarity", value: "breedType" },
         { key: "gender", text: "Gender", value: "gender" },
-        { key: "winrate", text: "Winrate", value: "winRate" },
+        { key: "winrate", text: "Winrate | T. Races", value: "winRate" },
         { key: "totalraces", text: "Races", value: "totalRaces", isHeader: false },
         { key: "raceable", text: "Raceable", value: "canRaceAt" },
         { key: "breedable", text: "Breedable", value: "canBreedAt" },
@@ -148,9 +147,9 @@ const TableComponent = ({ data, title }: TableProps) => {
                             tableData.map((row: any, index: number) => {
                                 
                                 const currentTimeStamp = getCurrentTimestamp();
-                                const isHorseRaceable = checkIfHorseIsRaceable(row["canRaceAt"], currentTimeStamp);
+                                const isHorseRaceable = checkIfHorseIsRaceable(row["canRaceAt"], currentTimeStamp) ? true : timeDiff(getCurrentTimestamp(),row['canRaceAt']);
                                 //const isHorseBreadable = checkIfHorseIsBreedable(row["lastBreedTime"], currentTimeStamp, row["bornTime"], row["bloodLine"]);
-                                const isHorseBreedable = checkIfHorseIsBreedable(row['canBreedAt'], currentTimeStamp);
+                                const isHorseBreedable = checkIfHorseIsBreedable(row['canBreedAt'], currentTimeStamp) ? true : timeDiff(getCurrentTimestamp(),row['canBreedAt']);
                                 let raceable;
                                 let breedable;
                                 let color = "#000000";
@@ -166,12 +165,16 @@ const TableComponent = ({ data, title }: TableProps) => {
                                     }
                                 }
 
-                                isHorseRaceable ? (raceable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (raceable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
-                                isHorseBreedable ? (breedable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (breedable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
+                                //isHorseRaceable ? (raceable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (raceable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
+                                //isHorseBreedable ? (breedable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : (breedable = <AiOutlineClose className="text-red-500 text-2xl mx-auto" />);
+                                
+                                isHorseRaceable  === true ? (raceable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : raceable = isHorseRaceable
+                                isHorseBreedable === true ? (breedable = <AiOutlineCheck className="text-green-500 text-2xl mx-auto" />) : breedable = isHorseBreedable;
 
                                 return (
+                                    <>
                                     <Table.Row key={index}>
-                                        <Table.Cell  textAlign="center">{index}</Table.Cell>
+                                        <Table.Cell textAlign="center">{index}</Table.Cell>
                                         <Table.Cell textAlign="center" className="text-center cursor-pointer" onClick={() => window.open(`https://${PEGAXY_GAME_ENDPOINTS.PEGAXY}/${PEGAXY_GAME_ENDPOINTS.MYASSETS}/${PEGAXY_GAME_ENDPOINTS.PEGA}/${row["id"]}`, "_blank")}>
                                             <div className="flex justify-center items-center gap-x-2">
                                                 {row["id"]} <HiOutlineExternalLink size={14} />
@@ -216,8 +219,10 @@ const TableComponent = ({ data, title }: TableProps) => {
                                                 {row["energy"]}
                                                 <BsLightningFill />
                                             </div>
-                                        </Table.Cell>
+                                        </Table.Cell> 
                                     </Table.Row>
+                                  
+                                    </>
                                 );
                             })
                         )}
