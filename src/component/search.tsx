@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Icon, Input } from "semantic-ui-react";
 import styled from "styled-components";
 
-
 const StyledInput = styled(Input)`
     background: none !important;
     border: none !important;

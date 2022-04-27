@@ -16,7 +16,7 @@ export const Changelog : any = [
     },
     {
         date : '21/04/2022',
-        textChanges : ['Added changelog page','Added changelog link to footer','"Breedable" and "Raceable" now shows the time remaining for the horse to be able to breed'],
+        textChanges : ['Added changelog page','Added changelog link to footer','"Breedable" and "Raceable" now shows the time remaining for the horse to be able to breed', 'Added "Total Races" indicador to table\'s header'],
         version : '0.0.4 beta',
     }
 ]

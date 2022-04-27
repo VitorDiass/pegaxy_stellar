@@ -160,3 +160,27 @@
 .pega-status-fire {
     color : var(--color-pega-fire)
 }
+
+.status-speed > .bar {
+    background: var(--color-pega-speed) !important;
+}
+
+.status-strength > .bar {
+    background: var(--color-pega-strength) !important;
+}
+
+.status-lightning > .bar {
+    background: var(--color-pega-lightning) !important;
+}
+
+.status-wind > .bar {
+    background: var(--color-pega-wind) !important;
+}
+
+.status-water > .bar {
+    background: var(--color-pega-water) !important;
+}
+
+.status-fire > .bar {
+    background: var(--color-pega-fire) !important;
+}

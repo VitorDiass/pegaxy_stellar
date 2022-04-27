@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker'
+/* import { faker } from '@faker-js/faker'
 
 export const genTableData = () => {    
     const data = [];
@@ -36,7 +36,7 @@ export const genTableData = () => {
 
 console.log(genTableData()) 
 
-
+ */
 export const tableDemoData = [
     {
         id: 42730,

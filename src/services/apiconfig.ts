@@ -27,13 +27,19 @@ export const STATS_ENDPOINT = {
 }
 
 export const EARNINGS_ENDPOINT = {
-    "EARNINGS" : '/earnings',
+    "EARNINGS"   : '/earnings',
     "HISTORICAL" : '/historical',
-    "USER" : '/user'
+    "USER"       : '/user'
 }
 
 export const PEGAS_ENDPOINT = {
-    "PEGAS" : "/pegas",
-    "OWNER" : "/owner",
-    "USER"  : "/user"
+    "PEGAS"    : "/pegas",
+    "OWNER"    : "/owner",
+    "USER"     : "/user",
+    "EARNINGS" : '/earnings'
+}
+
+export const GAME_API_ENDPOINT = {
+    "GAME-API" : '/game-api',
+    "PEGA" : '/pega'
 }

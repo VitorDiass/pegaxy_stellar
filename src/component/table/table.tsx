@@ -145,7 +145,6 @@ const TableComponent = ({ data, title }: TableProps) => {
                             </Table.Row>
                         ) : (
                             tableData.map((row: any, index: number) => {
-                                
                                 const currentTimeStamp = getCurrentTimestamp();
                                 const isHorseRaceable = checkIfHorseIsRaceable(row["canRaceAt"], currentTimeStamp) ? true : timeDiff(getCurrentTimestamp(),row['canRaceAt']);
                                 //const isHorseBreadable = checkIfHorseIsBreedable(row["lastBreedTime"], currentTimeStamp, row["bornTime"], row["bloodLine"]);

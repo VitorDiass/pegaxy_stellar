@@ -14,10 +14,10 @@ const StyledCard = styled(Card)`
 
 interface Card{
     children : React.ReactNode
-    classNames? : string
+    className? : string
 }
 
-const CardInfoComponent : React.FC<Card & React.HTMLAttributes<HTMLDivElement>> = ({children}) => {
+const CardInfoComponent : React.FC<Card & React.HTMLAttributes<HTMLDivElement>> = ({children, className}) => {
   return (
   <>
     <StyledCard>
