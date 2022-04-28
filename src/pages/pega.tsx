@@ -6,65 +6,114 @@ import LayoutComponent from "../component/layout";
 import PegaStatusComponent from "../component/pegaStatus/pegaStatus";
 import SingleStatusComponent from "../component/pegaStatus/singleStatus";
 import StatusBarComponent from "../component/statusbar";
-import { getPegaInfoService } from "../services/endpoints/game-api";
-import { MAX_PEGA_STATUS, timestampToHumanDate } from "../utils/utils";
+import { getPegaDesignService } from "../services/endpoints/game-api";
+import { getPegaInfoService } from "../services/endpoints/pegas";
+import { MAX_PEGA_ENERGY, MAX_PEGA_STATUS, timestampToHumanDate } from "../utils/utils";
 
 const PegaComponent = () => {
     const { pegaid } = useParams();
+    const [pegaDesign, setPegaDesign] = useState<any>();
     const [pegaInfo, setPegaInfo] = useState<any>();
 
     useEffect(() => {
-        const getPegaInfo = async (pegaid: string) => {
-            const response = await getPegaInfoService(pegaid);
+        const getPegaDesign = async (pegaid: string) => {
+            const response = await getPegaDesignService(pegaid);
             if (response) {
-                setPegaInfo(response.data?.pega);
+                setPegaDesign(response.data?.pega?.design);
             }
         };
 
+        const getPegaInfo = async (pegaId: string) => {
+            const response = await getPegaInfoService(pegaid);
+            if (response) {
+                setPegaInfo(response.data);
+            }
+        };
+
+        getPegaDesign(pegaid);
         getPegaInfo(pegaid);
     }, []);
 
     return (
         <LayoutComponent>
             <StatusBarComponent gobackprop={true} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-20">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 p-20">
                 <div className="row-span-6">
-                    <CardInfoComponent>
+                    <CardInfoComponent hoverActive={true}>
                         <div className="flex flex-col justify-center items-center">
-                            <span className="text-xl color-text-secundary">#{pegaInfo?.id}</span>
+                            <span className="text-xl color-text-secundary">#{pegaid}</span>
                             <span className="text-3xl">{pegaInfo?.name}</span>
                         </div>
                         <div className="flex justify-center items-center pb-10">
-                            <img src={pegaInfo?.design?.avatar} width={450} height={450} alt="pega"></img>
+                            <img src={pegaDesign?.avatar} width={450} height={450} alt="pega"></img>
                         </div>
-                        <div className="grid grid-cols-4 text-base">
-                            <div className="flex items-center gap-x-1 justify-center"><FaVenus/>{pegaInfo?.gender}</div>
-                            <div className="flex items-center gap-x-1 justify-center"><FaHorse/>{pegaInfo?.bloodLine}</div>
-                            <div className="flex items-center gap-x-1 justify-center"><FaStar/>{pegaInfo?.breedType}</div>
-                            <div className="flex items-center gap-x-1 justify-center"><FaBirthdayCake/>{timestampToHumanDate(pegaInfo?.bornTime)}</div>
+                        <div className="grid grid-cols-4 text-base text-center">
+                            <div className="flex items-center gap-x-1 justify-center">
+                                <FaVenus />
+                                {pegaInfo?.gender}
+                            </div>
+                            <div className="flex items-center gap-x-1 justify-center">
+                                <FaHorse />
+                                {pegaInfo?.bloodLine}
+                            </div>
+                            <div className="flex items-center gap-x-1 justify-center">
+                                <FaStar />
+                                {pegaInfo?.breedType}
+                            </div>
+                            <div className="flex items-center gap-x-1 justify-center">
+                                <FaBirthdayCake />
+                                {timestampToHumanDate(pegaInfo?.bornTime)}
+                            </div>
                         </div>
                     </CardInfoComponent>
                 </div>
-                <div className="row-span-6 grid grid-cols-2 gap-x-5">
+                <div className="row-span-6 grid grid-cols-1 xl:grid-cols-2 gap-5">
                     <div className="flex">
-                        <CardInfoComponent>
-                            <div className="flex flex-col gap-y-12">
-                            <div className="flex items-center gap-x-5"><span className="text-lg">SPEED</span><span className="pega-status-speed text-lg">{pegaInfo?.speed}</span></div><SingleStatusComponent value={pegaInfo?.speed} totalProgress={MAX_PEGA_STATUS} className="status-speed !bg-transparent !m-0"/>
-                            <div className="flex items-center gap-x-5"><span className="text-lg">STRENGTH</span><span className="pega-status-strength text-lg">{pegaInfo?.strength}</span><SingleStatusComponent value={pegaInfo?.strength} totalProgress={MAX_PEGA_STATUS} className="status-strength !bg-transparent !m-0"/></div>
-                            <SingleStatusComponent value={pegaInfo?.lightning} totalProgress={MAX_PEGA_STATUS} className="status-lightning !bg-transparent !m-0"/>
-                            <SingleStatusComponent value={pegaInfo?.wind} totalProgress={MAX_PEGA_STATUS} className="status-wind !bg-transparent !m-0"/>
-                            <SingleStatusComponent value={pegaInfo?.water} totalProgress={MAX_PEGA_STATUS} className="status-water !bg-transparent !m-0"/>
-                            <SingleStatusComponent value={pegaInfo?.fire} totalProgress={MAX_PEGA_STATUS} className="status-fire !bg-transparent !m-0"/>
+                        <CardInfoComponent hoverActive={true}>
+                            <h2 className="text-2xl mb-10">STATUS</h2>
+                            <div className="grid grid-cols-6 gap-y-8">
+                                <span className="col-span-2 text-lg">SPEED</span>
+                                <span className="pega-status-speed text-lg">{pegaInfo?.speed}</span>
+                                <SingleStatusComponent value={pegaInfo?.speed} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-speed !bg-transparent !m-0" />
+                                <span className="col-span-2 text-lg">STRENGTH</span>
+                                <span className="pega-status-strength text-lg">{pegaInfo?.strength}</span>
+                                <SingleStatusComponent value={pegaInfo?.strength} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-strength !bg-transparent !m-0" />
+                                <span className="col-span-2 text-lg">LIGHTNING</span>
+                                <span className="pega-status-lightning text-lg">{pegaInfo?.lightning}</span>
+                                <SingleStatusComponent value={pegaInfo?.lightning} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-lightning !bg-transparent !m-0" />
+                                <span className="col-span-2 text-lg">WIND</span>
+                                <span className="pega-status-wind text-lg">{pegaInfo?.wind}</span>
+                                <SingleStatusComponent value={pegaInfo?.wind} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-wind !bg-transparent !m-0" />
+                                <span className="col-span-2 text-lg">WATER</span>
+                                <span className="pega-status-water text-lg">{pegaInfo?.water}</span>
+                                <SingleStatusComponent value={pegaInfo?.water} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-water !bg-transparent !m-0" />
+                                <span className="col-span-2 text-lg">FIRE</span>
+                                <span className="pega-status-fire text-lg">{pegaInfo?.fire}</span>
+                                <SingleStatusComponent value={pegaInfo?.fire} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-fire !bg-transparent !m-0" />
+                            </div>
+                            <div className="flex gap-x-10 items-center mt-10">
+                                <span className="text-lg">ENERGY</span>
+                                <SingleStatusComponent progressType="ratio" value={20} totalProgress={MAX_PEGA_ENERGY} className="flex flex-1 inverted !m-0 pega-energy"/>
+                            </div>
+                            <div className="flex gap-x-1 mt-10">
+                                <span className="text-lg mr-10">BREEDS</span>
+                                <div className="progress-block"></div>
+                                <div className="progress-block"></div>
+                                <div className="progress-block"></div>
+                                <div className="progress-block"></div>
+                                <div className="progress-block-bg"></div>
+                                <div className="progress-block-bg"></div>
+                                <div className="progress-block-bg"></div>
                             </div>
                         </CardInfoComponent>
                     </div>
                     <div className="flex">
-                        <CardInfoComponent>
+                        <CardInfoComponent hoverActive={true}>
 
                         </CardInfoComponent>
                     </div>
                 </div>
-             {/*    <CardInfoComponent>
+                {/*    <CardInfoComponent>
                     <div className="flex items-center">
                     <div className="grid grid-cols-5 text-center color-text-secundary">
                         <div>ID</div>
@@ -82,8 +131,6 @@ const PegaComponent = () => {
                     </div>
                     </div>
                 </CardInfoComponent> */}
-
-              
             </div>
         </LayoutComponent>
     );

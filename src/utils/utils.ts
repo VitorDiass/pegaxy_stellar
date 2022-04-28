@@ -7,6 +7,7 @@ export const PegaCooldown = {
 };
 
 export const MAX_PEGA_STATUS = 9;
+export const MAX_PEGA_ENERGY = 25;
 
 export const numberFormat = (numberToFormat: number | string) => {
     let formatedString = "";

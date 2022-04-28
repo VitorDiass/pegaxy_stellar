@@ -33,7 +33,7 @@
     --color-bg-secundary-hover : #8888881a;
     --color-text-subsecundary : #8f8f8f;
 
-    --color-card-bg-alt : rgba(6, 8, 14, 0.6);
+    --color-card-bg-alt : #06080e99;
 
     /*TOAST*/
     --color-toast-bg : #181921;
@@ -183,4 +183,34 @@
 
 .status-fire > .bar {
     background: var(--color-pega-fire) !important;
+}
+
+
+.ui.inverted.progress.pega-energy .bar{
+    background: #9a43a5;
+}
+
+.ui.progress .bar {
+    min-width: 0px !important;
+}
+
+.ui.progress .bar > .progress {
+    padding-left: 2px !important;
+    text-align: center;
+    right : 0% !important;
+    left : 0% !important;
+}
+
+.progress-block {
+    background-color: white;
+    width: 15px;
+    height: 24.5px;
+    border-radius: 2px;
+}
+
+.progress-block-bg {
+    background-color: gray;
+    width: 15px;
+    height: 24.5px;
+    border-radius: 2px;
 }

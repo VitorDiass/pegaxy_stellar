@@ -1,20 +1,17 @@
 import React from 'react'
 import { Progress } from 'semantic-ui-react'
-import styled from 'styled-components'
 
 interface SingleStatus {
     className? : string
     value  : number
     totalProgress : number
+    progressType? : boolean | 'ratio' | 'value' | 'percent'
 }
 
-const StyledProgress = styled(Progress)`
 
-`
-
-const SingleStatusComponent = ({value, totalProgress, className = ''} : SingleStatus) => {
+const SingleStatusComponent = ({value, totalProgress, className = '', progressType = false} : SingleStatus) => {
   return (
-    <Progress value={value} className={className} total={totalProgress}/>
+    <Progress  progress={progressType} value={value} className={className} total={totalProgress}/>
   )
 }
 
