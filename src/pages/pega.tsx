@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaBirthdayCake, FaCalendar, FaFemale, FaHorse, FaStar, FaVenus } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import CardInfoComponent from "../component/cardInfo";
+import EnergyBarsComponent from "../component/bars/bars";
 import LayoutComponent from "../component/layout";
 import PegaStatusComponent from "../component/pegaStatus/pegaStatus";
 import SingleStatusComponent from "../component/pegaStatus/singleStatus";
@@ -9,6 +10,8 @@ import StatusBarComponent from "../component/statusbar";
 import { getPegaDesignService } from "../services/endpoints/game-api";
 import { getPegaInfoService } from "../services/endpoints/pegas";
 import { MAX_PEGA_ENERGY, MAX_PEGA_STATUS, timestampToHumanDate } from "../utils/utils";
+import BarsComponent from "../component/bars/bars";
+import { Divider, Label, Segment } from "semantic-ui-react";
 
 const PegaComponent = () => {
     const { pegaid } = useParams();
@@ -70,8 +73,25 @@ const PegaComponent = () => {
                 <div className="row-span-6 grid grid-cols-1 xl:grid-cols-2 gap-5">
                     <div className="flex">
                         <CardInfoComponent hoverActive={true}>
+                            <h2 className="text-2xl mb-10">PLACE STATS</h2>
+                            <div className="flex">
+                                <div className="text-lg mr-10">WINRATE</div>
+                                <div className="text-lg">{((pegaInfo?.win / pegaInfo?.pegaTotalRaces) * 100).toFixed(3)} %</div>
+                            </div>
+                            <div className="flex mt-8">
+                                <div className="text-lg mr-10">WIN</div>
+                                <div className="text-lg">{pegaInfo?.win}</div>
+                            </div>
+                            <div className="flex mt-8">
+                                <div className="text-lg mr-10">LOST</div>
+                                <div className="text-lg">{pegaInfo?.lose}</div>
+                            </div>
+                        </CardInfoComponent>
+                    </div>
+                    <div className="flex">
+                        <CardInfoComponent hoverActive={true}>
                             <h2 className="text-2xl mb-10">STATUS</h2>
-                            <div className="grid grid-cols-6 gap-y-8">
+                            <div className="grid grid-cols-6 gap-y-8 mb-6">
                                 <span className="col-span-2 text-lg">SPEED</span>
                                 <span className="pega-status-speed text-lg">{pegaInfo?.speed}</span>
                                 <SingleStatusComponent value={pegaInfo?.speed} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-speed !bg-transparent !m-0" />
@@ -91,25 +111,19 @@ const PegaComponent = () => {
                                 <span className="pega-status-fire text-lg">{pegaInfo?.fire}</span>
                                 <SingleStatusComponent value={pegaInfo?.fire} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-fire !bg-transparent !m-0" />
                             </div>
-                            <div className="flex gap-x-10 items-center mt-10">
+                            <Divider/>
+                            <div className="flex gap-x-10 items-center mt-6">
                                 <span className="text-lg">ENERGY</span>
-                                <SingleStatusComponent progressType="ratio" value={20} totalProgress={MAX_PEGA_ENERGY} className="flex flex-1 inverted !m-0 pega-energy"/>
+                                <SingleStatusComponent progressType="ratio" value={pegaInfo?.energy} totalProgress={MAX_PEGA_ENERGY} className="flex flex-1 inverted !m-0 pega-energy" />
                             </div>
                             <div className="flex gap-x-1 mt-10">
                                 <span className="text-lg mr-10">BREEDS</span>
-                                <div className="progress-block"></div>
-                                <div className="progress-block"></div>
-                                <div className="progress-block"></div>
-                                <div className="progress-block"></div>
-                                <div className="progress-block-bg"></div>
-                                <div className="progress-block-bg"></div>
-                                <div className="progress-block-bg"></div>
+                                <BarsComponent currentlvl={pegaInfo?.breedCount} maxlvl={7} />
                             </div>
-                        </CardInfoComponent>
-                    </div>
-                    <div className="flex">
-                        <CardInfoComponent hoverActive={true}>
-
+                            <div className="flex mt-10">
+                                <span className="text-lg mr-10">SERVICE</span>
+                                <Label>{pegaInfo?.inService}</Label>
+                            </div>
                         </CardInfoComponent>
                     </div>
                 </div>
