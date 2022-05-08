@@ -16,6 +16,7 @@ function RoutesComponent() {
         <Route path="/demo" element={<DemoPage/>}/>
         <Route path="/changelog" element={<ChangelogPage/>}/>
         <Route path="/pega/:pegaid" element={<PegaComponent/>}/>
+        <Route path="/pega" element={<PegaComponent/>}/>
         <Route path="/:walletaddress" element={<WalletInfoComponent/>}/>
         <Route path="*" element={<App/>}/>
       </Routes>

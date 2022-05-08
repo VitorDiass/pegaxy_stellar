@@ -26,7 +26,7 @@ interface Card{
 const CardInfoComponent : React.FC<Card & React.HTMLAttributes<HTMLDivElement>> = ({children, hoverActive = false, className} : Card) => {
   return (
   <>
-    <StyledCard hoverActive={hoverActive}>
+    <StyledCard hoverActive={hoverActive} className={`${className}`}>
         {children}
     </StyledCard>
   </>

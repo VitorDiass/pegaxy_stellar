@@ -41,5 +41,7 @@ export const PEGAS_ENDPOINT = {
 
 export const GAME_API_ENDPOINT = {
     "GAME-API" : '/game-api',
-    "PEGA" : '/pega'
+    "PEGA" : '/pega',
+    "RACE" : '/race',
+    "HISTORY" : '/history'
 }

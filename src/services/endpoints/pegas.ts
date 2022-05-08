@@ -1,3 +1,4 @@
+import { getCurrentTimestamp, OLDEST_TIMESTAMP } from "../../utils/utils";
 import { axiosInstance } from "../api";
 import { PEGAS_ENDPOINT } from '../apiconfig';
 
@@ -11,9 +12,9 @@ export const userOwnedPegaInfo = (walletaddress : string) => {
 
 
 /*v1/peagas/{pegaID}/earnings*/
-export const pegaEarnings = (pegaId : string) => {
+export const pegaEarningsService = (pegaId : string, since? : number, to? : number) => {
     if(pegaId){
-        return axiosInstance.get(`${PEGAS_ENDPOINT.PEGAS}/${pegaId}${PEGAS_ENDPOINT.EARNINGS}`);
+        return axiosInstance.get(`${PEGAS_ENDPOINT.PEGAS}/${pegaId}${PEGAS_ENDPOINT.EARNINGS}?since=${since ? since : OLDEST_TIMESTAMP}&to=${to ? to : getCurrentTimestamp()}`);
     }else{
         return null;
     }

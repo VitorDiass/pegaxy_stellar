@@ -11,7 +11,7 @@ const BarsComponent = ({ currentlvl, maxlvl }: EnergyBar) => {
       <>
       {Array.from(Array(maxlvl).keys()).map((_, index) => {
         return (
-          index < currentlvl ? <div className="progress-block mx-1"></div> : <div className="progress-block-bg mx-1"></div>
+          index < currentlvl ? <div className="progress-block"></div> : <div className="progress-block-bg"></div>
         )
       })}
       </>

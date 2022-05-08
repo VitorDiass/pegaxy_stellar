@@ -9,7 +9,7 @@ import StatusBarComponent from "../component/statusbar";
 import TableComponent from "../component/table/table";
 import { tableDemoData } from "../faker/faker";
 import { userPegaAndVisService } from "../services/endpoints/assets";
-import { pegaEarnings, userOwnedPegaInfo } from "../services/endpoints/pegas";
+import { pegaEarningsService, userOwnedPegaInfo } from "../services/endpoints/pegas";
 import { MyToaster, TOAST_TYPE } from "../toast/toast";
 import { numberFormat, shortenWalletAddress } from "../utils/utils";
 

@@ -9,6 +9,10 @@ export const PegaCooldown = {
 export const MAX_PEGA_STATUS = 9;
 export const MAX_PEGA_ENERGY = 25;
 
+export const REWARDS_UPDATE_TIMESTAMP = 1650067200; //16 april midnight
+
+export const OLDEST_TIMESTAMP = 43200;
+
 export const numberFormat = (numberToFormat: number | string) => {
     let formatedString = "";
     let j = 0;
