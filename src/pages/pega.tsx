@@ -91,8 +91,8 @@ const PegaComponent = () => {
     return (
         <LayoutComponent>
             <StatusBarComponent gobackprop={true} />
-            <SearchComponent handleSearchInput={handleSearchPegaInput} placeholder='Type pega ID here...' className="w-1/4"/>
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 p-20">
+            <SearchComponent handleSearchInput={handleSearchPegaInput} placeholder='Type pega ID here...' className="w-full xs:w-2/3 md:w-1/2 lg:w-1/3"/>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-16 2xl:px-16">
                 <div className="row-span-6">
                     <CardInfoComponent hoverActive={true}>
                         <div className="flex flex-col justify-center items-center">

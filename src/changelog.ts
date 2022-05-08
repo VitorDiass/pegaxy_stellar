@@ -18,5 +18,10 @@ export const Changelog : any = [
         date : '21/04/2022',
         textChanges : ['Added changelog page','Added changelog link to footer','"Breedable" and "Raceable" now shows the time remaining for the horse to be able to breed', 'Added "Total Races" indicador to table\'s header'],
         version : '0.0.4 beta',
+    },
+    {
+        date : '08/05/2022',
+        textChanges : ['Added pega lookup page - id, name, gender, breed type, rarity, born time, wr, wins, loses, avg vis/day, avg vis/race, parent\'s id, status, enegy, breed count, service', 'Added link from wallet pega table to pega lookup', 'Added pega id input to app main page'],
+        version : '0.0.5 beta',
     }
 ]

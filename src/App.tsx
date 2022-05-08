@@ -54,7 +54,7 @@ const App = () => {
             <LayoutMainPageComponent>
                 <StatusBarComponent />
                 <MainHeaderComponent />
-                <div className="grid grid-cols-1 lg:grid-cols-6 space-x-10 px-16">
+                <div className="grid grid-cols-1 lg:grid-cols-6 gap-10 px-16">
                     <div className="lg:col-span-3">
                         <CardInfoComponent>
                         <h2 className="flex justify-center text-2xl">Wallet Lookup</h2>
@@ -63,7 +63,7 @@ const App = () => {
                         </CardInfoComponent>
                     </div>
                     <div className="lg:col-span-3">
-                        <CardInfoComponent className="h-full">
+                        <CardInfoComponent className="h-[307px] lg:h-full">
                         <h2 className="flex justify-center text-2xl">Pega Lookup</h2>
                             <SearchComponent handleSearchInput={handleSearchPega} placeholder="Type pega ID here..." className="w-5/6" />
                         </CardInfoComponent>
