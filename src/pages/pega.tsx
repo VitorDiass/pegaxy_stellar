@@ -74,130 +74,138 @@ const PegaComponent = () => {
         getPegaRaceHistory(pegaid);
     }, [pegaid]);
 
-    const handleSearchPegaInput = (input : string) => {
-        if(typeof input === 'string' && input){
-            
+    const handleSearchPegaInput = (input: string) => {
+        if (typeof input === "string" && input) {
             const pegaIdRegex = new RegExp("^[0-9]+$");
             const isValidInput = pegaIdRegex.test(input);
-      
-            if(isValidInput){
-              navigate(`/pega/${input}`)
-            }else{
-              MyToaster('NOT A VALID PEGA ID','pega_input',TOAST_TYPE.ERROR);
+
+            if (isValidInput) {
+                navigate(`/pega/${input}`);
+            } else {
+                MyToaster("NOT A VALID PEGA ID", "pega_input", TOAST_TYPE.ERROR);
             }
-          }
-    }
+        }
+    };
 
     return (
         <LayoutComponent>
             <StatusBarComponent gobackprop={true} />
-            <SearchComponent handleSearchInput={handleSearchPegaInput} placeholder='Type pega ID here...' className="w-full xs:w-2/3 md:w-1/2 lg:w-1/3"/>
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-16 2xl:px-16">
-                <div className="row-span-6">
-                    <CardInfoComponent hoverActive={true}>
-                        <div className="flex flex-col justify-center items-center">
-                            <span className="text-xl color-text-secundary">#{pegaid}</span>
-                            <span className="text-3xl">{pegaInfo?.name}</span>
-                        </div>
-                        <div className="flex justify-center items-center pb-10">
-                            <img src={pegaDesign?.avatar} width={450} height={450} alt="pega"></img>
-                        </div>
-                        <div className="grid grid-cols-4 text-base text-center">
-                            <div className="flex items-center gap-x-1 justify-center">
-                                <FaVenus />
-                                {pegaInfo?.gender}
-                            </div>
-                            <div className="flex items-center gap-x-1 justify-center">
-                                <FaHorse />
-                                {pegaInfo?.bloodLine}
-                            </div>
-                            <div className="flex items-center gap-x-1 justify-center">
-                                <FaStar />
-                                {pegaInfo?.breedType}
-                            </div>
-                            <div className="flex items-center gap-x-1 justify-center">
-                                <FaBirthdayCake />
-                                {timestampToHumanDate(pegaInfo?.bornTime)}
-                            </div>
-                        </div>
-                    </CardInfoComponent>
-                </div>
-                <div className="row-span-6 grid grid-cols-1 xl:grid-cols-2 gap-5">
-                    <div className="flex">
+            <SearchComponent handleSearchInput={handleSearchPegaInput} placeholder="Type pega ID here..." className="w-full xs:w-2/3 md:w-1/2 lg:w-1/3" />
+            {pegaid && (
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-16 2xl:px-16">
+                    <div className="row-span-6">
                         <CardInfoComponent hoverActive={true}>
-                            <h2 className="text-2xl mb-10">PLACE STATS</h2>
-                            <div className="grid grid-cols-2 gap-y-8">
-                                <div className="text-lg">WINRATE</div>
-                                <div className="text-lg">{((pegaInfo?.win / pegaInfo?.pegaTotalRaces) * 100).toFixed(3)} %</div>
-                                <div className="text-lg">WIN</div>
-                                <div className="text-lg">{pegaInfo?.win}</div>
-                                <div className="text-lg">LOST</div>
-                                <div className="text-lg">{pegaInfo?.lose}</div>
-                                <div className="text-lg">AVG VIS/DAY</div>
-                                <span className="flex items-center gap-x-2">
-                                    <img className="mb-0.5" src="/images/vis.png" width={20} />
-                                    <div className="text-lg">{avgVisDay.toFixed(2)}</div>
-                                </span>
-                                <div className="text-lg">AVG VIS/RACE</div>
-                                <span className="flex items-center gap-x-2">
-                                    <img className="mb-0.5" src="/images/vis.png" width={20} />
-                                    <div className="text-lg">{avgVisRace.toFixed(2)}</div>
-                                </span>
+                            <div className="flex flex-col justify-center items-center">
+                                <span className="text-xl color-text-secundary">#{pegaid}</span>
+                                <span className="text-3xl">{pegaInfo?.name}</span>
                             </div>
-                            <div className="grid grid-cols-2 gap-y-8"></div>
-                            <Divider className="!my-6" />
-                            <h2 className="text-2xl mb-10">PARENTS</h2>
-                            <div className="grid grid-cols-2 gap-y-8">
-                                <div className="text-lg">MOTHER</div>
-                                <div className="text-lg"><Link to={`/pega/${pegaInfo?.motherId}`} className="underline">{pegaInfo?.motherId}</Link></div>
-                            <div className="text-lg">FATHER</div>
-                            <div className="text-lg"><Link to={`/pega/${pegaInfo?.fatherId}`} className="underline">{pegaInfo?.fatherId}</Link></div>
+                            <div className="flex justify-center items-center pb-10">
+                                <img src={pegaDesign?.avatar} width={450} height={450} alt="pega"></img>
                             </div>
+                            <div className="grid grid-cols-4 text-base text-center">
+                                <div className="flex items-center gap-x-1 justify-center">
+                                    <FaVenus />
+                                    {pegaInfo?.gender}
+                                </div>
+                                <div className="flex items-center gap-x-1 justify-center">
+                                    <FaHorse />
+                                    {pegaInfo?.bloodLine}
+                                </div>
+                                <div className="flex items-center gap-x-1 justify-center">
+                                    <FaStar />
+                                    {pegaInfo?.breedType}
+                                </div>
+                                <div className="flex items-center gap-x-1 justify-center">
+                                    <FaBirthdayCake />
+                                    {timestampToHumanDate(pegaInfo?.bornTime)}
+                                </div>
+                            </div>
+                        </CardInfoComponent>
+                    </div>
+                    <div className="row-span-6 grid grid-cols-1 xl:grid-cols-2 gap-5">
+                        <div className="flex">
+                            <CardInfoComponent hoverActive={true}>
+                                <h2 className="text-2xl mb-10">PLACE STATS</h2>
+                                <div className="grid grid-cols-2 gap-y-8">
+                                    <div className="text-lg">WINRATE</div>
+                                    <div className="text-lg">{((pegaInfo?.win / pegaInfo?.pegaTotalRaces) * 100).toFixed(3)} %</div>
+                                    <div className="text-lg">WIN</div>
+                                    <div className="text-lg">{pegaInfo?.win}</div>
+                                    <div className="text-lg">LOST</div>
+                                    <div className="text-lg">{pegaInfo?.lose}</div>
+                                    <div className="text-lg">AVG VIS/DAY</div>
+                                    <span className="flex items-center gap-x-2">
+                                        <img className="mb-0.5" src="/images/vis.png" width={20} />
+                                        <div className="text-lg">{avgVisDay.toFixed(2)}</div>
+                                    </span>
+                                    <div className="text-lg">AVG VIS/RACE</div>
+                                    <span className="flex items-center gap-x-2">
+                                        <img className="mb-0.5" src="/images/vis.png" width={20} />
+                                        <div className="text-lg">{avgVisRace.toFixed(2)}</div>
+                                    </span>
+                                </div>
+                                <div className="grid grid-cols-2 gap-y-8"></div>
+                                <Divider className="!my-6" />
+                                <h2 className="text-2xl mb-10">PARENTS</h2>
+                                <div className="grid grid-cols-2 gap-y-8">
+                                    <div className="text-lg">MOTHER</div>
+                                    <div className="text-lg">
+                                        <Link to={`/pega/${pegaInfo?.motherId}`} className="underline">
+                                            {pegaInfo?.motherId}
+                                        </Link>
+                                    </div>
+                                    <div className="text-lg">FATHER</div>
+                                    <div className="text-lg">
+                                        <Link to={`/pega/${pegaInfo?.fatherId}`} className="underline">
+                                            {pegaInfo?.fatherId}
+                                        </Link>
+                                    </div>
+                                </div>
 
-                            {/*  <div className="flex mt-8"></div>
+                                {/*  <div className="flex mt-8"></div>
                             <div className="flex mt-8"></div> */}
-                        </CardInfoComponent>
+                            </CardInfoComponent>
+                        </div>
+                        <div className="flex">
+                            <CardInfoComponent hoverActive={true}>
+                                <h2 className="text-2xl mb-10">STATUS</h2>
+                                <div className="grid grid-cols-6 gap-y-8">
+                                    <span className="col-span-2 text-lg">SPEED</span>
+                                    <span className="pega-status-speed text-lg">{pegaInfo?.speed}</span>
+                                    <SingleStatusComponent value={pegaInfo?.speed} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-speed !bg-transparent !m-0" />
+                                    <span className="col-span-2 text-lg">STRENGTH</span>
+                                    <span className="pega-status-strength text-lg">{pegaInfo?.strength}</span>
+                                    <SingleStatusComponent value={pegaInfo?.strength} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-strength !bg-transparent !m-0" />
+                                    <span className="col-span-2 text-lg">LIGHTNING</span>
+                                    <span className="pega-status-lightning text-lg">{pegaInfo?.lightning}</span>
+                                    <SingleStatusComponent value={pegaInfo?.lightning} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-lightning !bg-transparent !m-0" />
+                                    <span className="col-span-2 text-lg">WIND</span>
+                                    <span className="pega-status-wind text-lg">{pegaInfo?.wind}</span>
+                                    <SingleStatusComponent value={pegaInfo?.wind} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-wind !bg-transparent !m-0" />
+                                    <span className="col-span-2 text-lg">WATER</span>
+                                    <span className="pega-status-water text-lg">{pegaInfo?.water}</span>
+                                    <SingleStatusComponent value={pegaInfo?.water} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-water !bg-transparent !m-0" />
+                                    <span className="col-span-2 text-lg">FIRE</span>
+                                    <span className="pega-status-fire text-lg">{pegaInfo?.fire}</span>
+                                    <SingleStatusComponent value={pegaInfo?.fire} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-fire !bg-transparent !m-0" />
+                                </div>
+                                <Divider className="!my-6" />
+                                <div className="flex gap-x-10 items-center">
+                                    <span className="text-lg">ENERGY</span>
+                                    <SingleStatusComponent progressType="ratio" value={pegaInfo?.energy} totalProgress={MAX_PEGA_ENERGY} className="flex flex-1 inverted !m-0 pega-energy" />
+                                </div>
+                                <div className="flex gap-x-1 mt-10">
+                                    <span className="text-lg mr-10">BREEDS</span>
+                                    <BarsComponent currentlvl={pegaInfo?.breedCount} maxlvl={7} />
+                                </div>
+                                <div className="flex mt-10">
+                                    <span className="text-lg mr-10">SERVICE</span>
+                                    <Label>{pegaInfo?.inService}</Label>
+                                </div>
+                            </CardInfoComponent>
+                        </div>
                     </div>
-                    <div className="flex">
-                        <CardInfoComponent hoverActive={true}>
-                            <h2 className="text-2xl mb-10">STATUS</h2>
-                            <div className="grid grid-cols-6 gap-y-8">
-                                <span className="col-span-2 text-lg">SPEED</span>
-                                <span className="pega-status-speed text-lg">{pegaInfo?.speed}</span>
-                                <SingleStatusComponent value={pegaInfo?.speed} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-speed !bg-transparent !m-0" />
-                                <span className="col-span-2 text-lg">STRENGTH</span>
-                                <span className="pega-status-strength text-lg">{pegaInfo?.strength}</span>
-                                <SingleStatusComponent value={pegaInfo?.strength} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-strength !bg-transparent !m-0" />
-                                <span className="col-span-2 text-lg">LIGHTNING</span>
-                                <span className="pega-status-lightning text-lg">{pegaInfo?.lightning}</span>
-                                <SingleStatusComponent value={pegaInfo?.lightning} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-lightning !bg-transparent !m-0" />
-                                <span className="col-span-2 text-lg">WIND</span>
-                                <span className="pega-status-wind text-lg">{pegaInfo?.wind}</span>
-                                <SingleStatusComponent value={pegaInfo?.wind} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-wind !bg-transparent !m-0" />
-                                <span className="col-span-2 text-lg">WATER</span>
-                                <span className="pega-status-water text-lg">{pegaInfo?.water}</span>
-                                <SingleStatusComponent value={pegaInfo?.water} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-water !bg-transparent !m-0" />
-                                <span className="col-span-2 text-lg">FIRE</span>
-                                <span className="pega-status-fire text-lg">{pegaInfo?.fire}</span>
-                                <SingleStatusComponent value={pegaInfo?.fire} totalProgress={MAX_PEGA_STATUS} className="col-span-3 status-fire !bg-transparent !m-0" />
-                            </div>
-                            <Divider className="!my-6" />
-                            <div className="flex gap-x-10 items-center">
-                                <span className="text-lg">ENERGY</span>
-                                <SingleStatusComponent progressType="ratio" value={pegaInfo?.energy} totalProgress={MAX_PEGA_ENERGY} className="flex flex-1 inverted !m-0 pega-energy" />
-                            </div>
-                            <div className="flex gap-x-1 mt-10">
-                                <span className="text-lg mr-10">BREEDS</span>
-                                <BarsComponent currentlvl={pegaInfo?.breedCount} maxlvl={7} />
-                            </div>
-                            <div className="flex mt-10">
-                                <span className="text-lg mr-10">SERVICE</span>
-                                <Label>{pegaInfo?.inService}</Label>
-                            </div>
-                        </CardInfoComponent>
-                    </div>
-                </div>
-                {/*    <CardInfoComponent>
+                    {/*    <CardInfoComponent>
                     <div className="flex items-center">
                     <div className="grid grid-cols-5 text-center color-text-secundary">
                         <div>ID</div>
@@ -215,7 +223,8 @@ const PegaComponent = () => {
                     </div>
                     </div>
                 </CardInfoComponent> */}
-            </div>
+                </div>
+            )}
         </LayoutComponent>
     );
 };
