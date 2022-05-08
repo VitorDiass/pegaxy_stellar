@@ -10,17 +10,23 @@ const StyledCard = styled(Card)`
     border : none !important;
     border-radius : 8px !important;
     padding : 20px !important;
+
+    &:hover{
+      background-color : ${(props) => props.hoverActive ? "#06080eb5 !important" : "var(--color-card-bg-alt)"} ;
+      //0px 0px 20px 0px grey !important;
+    }
 `
 
 interface Card{
     children : React.ReactNode
-    classNames? : string
+    className? : string
+    hoverActive? : boolean
 }
 
-const CardInfoComponent : React.FC<Card & React.HTMLAttributes<HTMLDivElement>> = ({children}) => {
+const CardInfoComponent : React.FC<Card & React.HTMLAttributes<HTMLDivElement>> = ({children, hoverActive = false, className} : Card) => {
   return (
   <>
-    <StyledCard>
+    <StyledCard hoverActive={hoverActive} className={`${className}`}>
         {children}
     </StyledCard>
   </>

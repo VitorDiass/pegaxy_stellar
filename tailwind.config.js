@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage : {
-        'backimage' : "url('/images/main.png')"
+        'backimage' : "url('/images/main.webp')"
       },
     },
       screens: {

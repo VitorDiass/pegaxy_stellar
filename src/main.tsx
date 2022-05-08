@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Toaster } from 'react-hot-toast';
 import { BrowserRouter } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css';
 import AppContext from "./context/appContext";
 import "./index.css";
 import RoutesComponent from "./routes";
-import toast, {Toaster} from 'react-hot-toast';
 
 /* const storageLogged = localStorage.getItem('logged');
 let logged = false
