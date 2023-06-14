@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Icon, Input } from "semantic-ui-react";
-import { FaWallet } from "react-icons/fa";
-
 import styled from "styled-components";
+
 
 const StyledInput = styled(Input)`
     background: none !important;
@@ -35,10 +34,9 @@ const SearchComponent = ({ handleSearchInput }: Search) => {
             <StyledInput
                 loading={false}
                 iconPosition="left"
-                className="w-5/12"
+                className="w-full xs:w-5/6 md:w-4/6 lg:w-5/12"
                 placeholder="Type your wallet address here..."
                 onChange={(event: any) => {
-                    //console.log(event.target.value)
                     if (event.target.value === "") {
                         handleSearchInput(event.target.value);
                     }
@@ -48,9 +46,6 @@ const SearchComponent = ({ handleSearchInput }: Search) => {
                 <Icon name="search" link onClick={() => handleSearchInput(textInput)} />
 
                 <input onKeyUp={handleKeyEvent} />
-
-                {/* <Icon className="!flex !items-center !opacity-100"> <FaWallet size={25} alignmentBaseline="middle" color="var(--color-success)"/> </Icon>
-                 */}
             </StyledInput>
         </div>
     );
