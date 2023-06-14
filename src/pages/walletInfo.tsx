@@ -9,7 +9,7 @@ import StatusBarComponent from "../component/statusbar";
 import TableComponent from "../component/table/table";
 import { tableDemoData } from "../faker/faker";
 import { userPegaAndVisService } from "../services/endpoints/assets";
-import { userOwnedPegaInfo } from "../services/endpoints/pegas";
+import { pegaEarningsService, userOwnedPegaInfo } from "../services/endpoints/pegas";
 import { MyToaster, TOAST_TYPE } from "../toast/toast";
 import { numberFormat, shortenWalletAddress } from "../utils/utils";
 
@@ -20,8 +20,6 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
     const [isDataReady, setIsDataReady] = useState<boolean>(false);
     const [userLockedVis, setuserLockedVis] = useState();
     const [userTotalPega, setuserTotalPega] = useState();
-    const [copyToCipBoardMessage, setcopyToCipBoardMessage] = useState(true);
-
     //const [testData, setTestData] = useState(tableDemoData)
 
     useEffect(() => {
@@ -59,6 +57,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
         //setWalletAdd(walletaddress);
     }, []);
 
+  
     return (
         <>
             <LayoutComponent>
@@ -96,7 +95,7 @@ const WalletInfoComponent = ({ walletAddressProp }: any) => {
                 </div>
                 <div className="grid grid-cols-1 mt-10">
                     {/*  <CardInfoComponent> */}
-                    {isDataReady ? <TableComponent data={userPegaInfoData} title=""></TableComponent> : <Loader active/>}
+                    {isDataReady ? <TableComponent data={userPegaInfoData} title=""/> : <Loader active/>}
                     {/* </CardInfoComponent> */}
                 </div>
             </LayoutComponent>

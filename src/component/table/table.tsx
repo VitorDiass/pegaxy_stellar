@@ -2,6 +2,7 @@ import React, { SyntheticEvent, useEffect, useState } from "react";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { BsLightningFill } from "react-icons/bs";
 import { HiOutlineExternalLink } from "react-icons/hi";
+import { Link, useNavigate } from "react-router-dom";
 import { Dropdown, Popup, Table } from "semantic-ui-react";
 import styled from "styled-components";
 import { PEGAXY_GAME_ENDPOINTS } from "../../services/apiconfig";
@@ -33,6 +34,7 @@ interface HeaderMapping {
 }
 
 const TableComponent = ({ data, title }: TableProps) => {
+    const navigate = useNavigate();
     const [sortdir, setSortdir] = useState("ascending");
     const [sortby, setSortby] = useState("name");
     const [tableHeaders, setTableHeaders] = useState([
@@ -145,7 +147,6 @@ const TableComponent = ({ data, title }: TableProps) => {
                             </Table.Row>
                         ) : (
                             tableData.map((row: any, index: number) => {
-                                
                                 const currentTimeStamp = getCurrentTimestamp();
                                 const isHorseRaceable = checkIfHorseIsRaceable(row["canRaceAt"], currentTimeStamp) ? true : timeDiff(getCurrentTimestamp(),row['canRaceAt']);
                                 //const isHorseBreadable = checkIfHorseIsBreedable(row["lastBreedTime"], currentTimeStamp, row["bornTime"], row["bloodLine"]);
@@ -173,55 +174,55 @@ const TableComponent = ({ data, title }: TableProps) => {
 
                                 return (
                                     <>
-                                    <Table.Row key={index}>
-                                        <Table.Cell textAlign="center">{index}</Table.Cell>
-                                        <Table.Cell textAlign="center" className="text-center cursor-pointer" onClick={() => window.open(`https://${PEGAXY_GAME_ENDPOINTS.PEGAXY}/${PEGAXY_GAME_ENDPOINTS.MYASSETS}/${PEGAXY_GAME_ENDPOINTS.PEGA}/${row["id"]}`, "_blank")}>
+                                        <Table.Row key={index} className="cursor-pointer" onClick={() => navigate(`/pega/${row['id']}`)}>
+                                            <Table.Cell textAlign="center">{index}</Table.Cell>
+                                            {/*  <Table.Cell textAlign="center" className="text-center cursor-pointer" onClick={() => window.open(`https://${PEGAXY_GAME_ENDPOINTS.PEGAXY}/${PEGAXY_GAME_ENDPOINTS.MYASSETS}/${PEGAXY_GAME_ENDPOINTS.PEGA}/${row["id"]}`, "_blank")}>
                                             <div className="flex justify-center items-center gap-x-2">
                                                 {row["id"]} <HiOutlineExternalLink size={14} />
                                             </div>
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center">{row["name"]}</Table.Cell>
-                                        <Table.Cell textAlign="center">{row["bloodLine"]}</Table.Cell>
-                                        <Table.Cell textAlign="center">{row["breedType"]}</Table.Cell>
-                                        <Table.Cell textAlign="center">{row["gender"]?.charAt(0)}</Table.Cell>
-                                        <Table.Cell textAlign="center">
-                                            <span className="flex justify-center items-center gap-x-1">
-                                                {Math.round(row["winRate"] * 100)}% <span>| {row["totalRaces"]}</span>
-                                            </span>
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center">{raceable}</Table.Cell>
-                                        <Table.Cell textAlign="center">{breedable}</Table.Cell>
-                                        <Table.Cell textAlign="center">{row["renterAddress"] ? <AiOutlineCheck className="text-green-500 text-2xl mx-auto" /> : <AiOutlineClose className="text-red-500 text-2xl mx-auto" />}</Table.Cell>
-                                        <Table.Cell textAlign="center">{row["breedCount"]}</Table.Cell>
-                                        <Table.Cell textAlign="center" className="pega-status-speed">
-                                            {row["speed"]}
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center" className="pega-status-strength">
-                                            {row["strength"]}
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center" className="pega-status-lightning">
-                                            {row["lightning"]}
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center" className="pega-status-wind">
-                                            {row["wind"]}
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center" className="pega-status-water">
-                                            {row["water"]}
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center" className="pega-status-fire">
-                                            {row["fire"]}
-                                        </Table.Cell>
-                                        <Table.Cell textAlign="center">{row["gold"]}</Table.Cell>
-                                        <Table.Cell textAlign="center">{row["silver"]}</Table.Cell>
-                                        <Table.Cell textAlign="center">{row["bronze"]}</Table.Cell>
-                                        <Table.Cell textAlign="center" className={color}>
-                                            <div className="flex justify-center items-center">
-                                                {row["energy"]}
-                                                <BsLightningFill />
-                                            </div>
-                                        </Table.Cell> 
-                                    </Table.Row>
-                                  
+                                        </Table.Cell> */}
+                                            <Table.Cell textAlign="center">{row["id"]} </Table.Cell>
+                                            <Table.Cell textAlign="center">{row["name"]}</Table.Cell>
+                                            <Table.Cell textAlign="center">{row["bloodLine"]}</Table.Cell>
+                                            <Table.Cell textAlign="center">{row["breedType"]}</Table.Cell>
+                                            <Table.Cell textAlign="center">{row["gender"]?.charAt(0)}</Table.Cell>
+                                            <Table.Cell textAlign="center">
+                                                <span className="flex justify-center items-center gap-x-1">
+                                                    {Math.round(row["winRate"] * 100)}% <span>| {row["totalRaces"]}</span>
+                                                </span>
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center">{raceable}</Table.Cell>
+                                            <Table.Cell textAlign="center">{breedable}</Table.Cell>
+                                            <Table.Cell textAlign="center">{row["renterAddress"] ? <AiOutlineCheck className="text-green-500 text-2xl mx-auto" /> : <AiOutlineClose className="text-red-500 text-2xl mx-auto" />}</Table.Cell>
+                                            <Table.Cell textAlign="center">{row["breedCount"]}</Table.Cell>
+                                            <Table.Cell textAlign="center" className="pega-status-speed">
+                                                {row["speed"]}
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center" className="pega-status-strength">
+                                                {row["strength"]}
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center" className="pega-status-lightning">
+                                                {row["lightning"]}
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center" className="pega-status-wind">
+                                                {row["wind"]}
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center" className="pega-status-water">
+                                                {row["water"]}
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center" className="pega-status-fire">
+                                                {row["fire"]}
+                                            </Table.Cell>
+                                            <Table.Cell textAlign="center">{row["gold"]}</Table.Cell>
+                                            <Table.Cell textAlign="center">{row["silver"]}</Table.Cell>
+                                            <Table.Cell textAlign="center">{row["bronze"]}</Table.Cell>
+                                            <Table.Cell textAlign="center" className={color}>
+                                                <div className="flex justify-center items-center">
+                                                    {row["energy"]}
+                                                    <BsLightningFill />
+                                                </div>
+                                            </Table.Cell>
+                                        </Table.Row>
                                     </>
                                 );
                             })

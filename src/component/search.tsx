@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Icon, Input } from "semantic-ui-react";
 import styled from "styled-components";
 
-
 const StyledInput = styled(Input)`
     background: none !important;
     border: none !important;
@@ -18,13 +17,15 @@ const StyledInput = styled(Input)`
 
 interface Search {
     handleSearchInput: Function;
+    placeholder : string,
+    className? : string
 }
 
-const SearchComponent = ({ handleSearchInput }: Search) => {
+const SearchComponent = ({ handleSearchInput, placeholder, className }: Search) => {
     const [textInput, setTextInput] = useState("");
 
     const handleKeyEvent = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.code === "Enter") {
+        if (event.code === "Enter" || event.code === 'NumpadEnter') {
             handleSearchInput(textInput);
         }
     };
@@ -34,8 +35,8 @@ const SearchComponent = ({ handleSearchInput }: Search) => {
             <StyledInput
                 loading={false}
                 iconPosition="left"
-                className="w-full xs:w-5/6 md:w-4/6 lg:w-5/12"
-                placeholder="Type your wallet address here..."
+                className={`${className}`}
+                placeholder={placeholder}
                 onChange={(event: any) => {
                     if (event.target.value === "") {
                         handleSearchInput(event.target.value);

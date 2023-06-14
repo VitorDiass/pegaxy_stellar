@@ -6,6 +6,13 @@ export const PegaCooldown = {
     BABY: 96,
 };
 
+export const MAX_PEGA_STATUS = 9;
+export const MAX_PEGA_ENERGY = 25;
+
+export const REWARDS_UPDATE_TIMESTAMP = 1650067200; //16 april midnight
+
+export const OLDEST_TIMESTAMP = 43200;
+
 export const numberFormat = (numberToFormat: number | string) => {
     let formatedString = "";
     let j = 0;
@@ -39,6 +46,13 @@ export const getCurrentTimestamp = () => {
 
     return Math.round(now.getTime() / 1000);
 };
+
+export const timestampToHumanDate = (timestamp : number) => {
+    const timestampMS = convertToMS(timestamp);
+    const humanDate = new Date(timestampMS);
+
+    return humanDate.toLocaleString();
+}
 
 export const checkIfHorseIsRaceable = (canRaceTimestamp: number, currentTimestamp: number) => {
     return currentTimestamp > canRaceTimestamp;
